@@ -8,7 +8,12 @@ const argv = require('minimist')(process.argv.slice(2));
 const turf = require('@turf/turf');
 const assert = require('node:assert/strict');
 
+const nycData = require('./nyc.json');
+
 const assetDirectory = `./assets-${argv.location}`;
+
+const pedBike = 'ped-bike';
+const vehicleOnly = 'vehicle-only';
 
 /**
  * Temporarily halts program execution.
@@ -24,8 +29,9 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
  */
 const fetchIncidents = async () => {
     const location = keys[argv.location];
-    // https://citizen.com/api/incident/trending?lowerLatitude=37.50733810871698&lowerLongitude=-77.4896682325317&upperLatitude=37.55817579112309&upperLongitude=-77.37033176746951&fullResponse=true&limit=200
-    const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=200`;
+    const limit = 400; // 200 was not high enough for NYC data
+    // https://citizen.com/api/incident/trending?lowerLatitude=37.50733810871698&lowerLongitude=-77.4896682325317&upperLatitude=37.55817579112309&upperLongitude=-77.37033176746951&fullResponse=true&limit=400
+    const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`;
     const response = await axios({
         url: citizenUrl,
         method: 'GET',
@@ -70,8 +76,9 @@ const downloadMapImages = async (incident, eventKey) => {
     if (argv.tweetSatellite && keys[argv.location].googleKey) {
         const googleSatelliteImagePath = path.resolve(__dirname, `${assetDirectory}/${eventKey}_satellite.png`);
         const googleSatelliteWriter = fs.createWriteStream(googleSatelliteImagePath);
+        const googleSatUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${incident.latitude},${incident.longitude}&size=500x500&zoom=20&maptype=hybrid&scale=2&key=${keys[argv.location].googleKey}`;
         const googleSatelliteResponse = await axios({
-            url: `https://maps.googleapis.com/maps/api/staticmap?center=${incident.latitude},${incident.longitude}&size=500x500&zoom=20&maptype=hybrid&scale=2&key=${keys[argv.location].googleKey}`,
+            url: googleSatUrl,
             method: 'GET',
             responseType: 'stream',
         });
@@ -155,7 +162,12 @@ const tweetIncidentThread = async (client, incident) => {
         tweets.push(`This incident occurred in ${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`);
     }
 
-    await client.v2.tweetThread(tweets);
+    try {
+        await client.v2.tweetThread(tweets);
+    } catch (err) {
+        console.log('error tweeting incident thread: ', err);
+    }
+
 };
 
 /**
@@ -163,11 +175,13 @@ const tweetIncidentThread = async (client, incident) => {
  * @param {*} client the instantiated Twitter client
  * @param {*} incidents the relevant Citizen incidents
  */
-const tweetSummaryOfLast24Hours = async (client, incidents) => {
+const tweetSummaryOfLast24Hours = async (client, incidents, type) => {
     const lf = new Intl.ListFormat('en');
     const numIncidents = incidents.length;
-    let firstTweet = numIncidents === 1 ? `There was ${numIncidents} Bicyclist and Pedestrian related crash found over the last 24 hours.` : `There were ${numIncidents} Bicyclist and Pedestrian related crashes found over the last 24 hours.`;
-    const disclaimerTweet = 'Disclaimer: This bot only tweets incidents called into 911, and this data is not representative of all crashes that may have occurred.';
+    let firstTweet = type === pedBike
+        ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} Bicyclist and Pedestrian related crash${numIncidents === 1 ? '' : 'es'} found over the last 24 hours.`
+        : `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of vehicle violence found over the last 24 hours.`;
+    const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all ${type === pedBike ? 'pedestrian/cyclist' : 'vehicle-only'} crashes that occurred.`;
     const tweets = [firstTweet, disclaimerTweet];
 
     if (numIncidents > 0 && argv.tweetReps) {
@@ -185,7 +199,12 @@ const tweetSummaryOfLast24Hours = async (client, incidents) => {
         }
     }
 
-    await client.v2.tweetThread(tweets);
+    try {
+        await client.v2.tweetThread(tweets);
+    } catch (err) {
+        console.log('error tweeting summary: ', err);
+    }
+
 };
 
 /**
@@ -193,67 +212,43 @@ const tweetSummaryOfLast24Hours = async (client, incidents) => {
  * @param {Array} allIncidents an array of Citizen incidents
  * @returns an array of Citizen incidents mentioning Pedestrians or Bicyclists.
  */
-const filterIncidents = (allIncidents) => {
-    const yesterdayTimestampInMs = Date.now() - 86400000;
-
+const filterPedBikeIncidents = (allIncidents) => {
     // Get incidents from the last 24 hours with pedestrian or bicyclist in the top level description
     const relevantIncidents = allIncidents
-        .filter(x => x.ts >= yesterdayTimestampInMs)
         .filter(x =>
             !x.raw.toLowerCase().includes("robbed") &&
-            !x.raw.toLowerCase().includes("burglary") &&
-            !x.title.toLowerCase().includes("robbed") &&
-            !x.title.toLowerCase().includes("burglary")
+            !x.raw.toLowerCase().includes("burglar") &&
+            !x.raw.toLowerCase().includes("stolen")
         )
         .filter(x =>
             x.raw.toLowerCase().includes("pedestrian") ||
-            x.raw.toLowerCase().includes("bicyclist") ||
+            x.raw.toLowerCase().includes("cyclist") ||
             x.raw.toLowerCase().includes("struck by vehicle") ||
+            x.raw.toLowerCase().includes("hit by vehicle") ||
             x.raw.toLowerCase().includes("bicycle") ||
-            x.raw.toLowerCase().includes("scooter") ||
-            x.title.toLowerCase().includes("pedestrian") ||
-            x.title.toLowerCase().includes("bicyclist") ||
-            x.title.toLowerCase().includes("struck by vehicle") ||
-            x.title.toLowerCase().includes("bicycle") ||
-            x.title.toLowerCase().includes("scooter")
-        )
-        .filter(x => {
-            // Specifically handle fire hydrants. 
-            // Sometimes drivers will hit both a hydrant and a pedestrian: https://twitter.com/PedCrashCincy/status/1547222336377704451?s=20&t=7Ul5acOZibIxmw_m9RXxqg
-            // Sometimes they'll only hit a hydrant: https://twitter.com/PedCrashCincy/status/1550121472286285824?s=20&t=7Ul5acOZibIxmw_m9RXxqg
-            // We want to handle hydrants only if non-drivers are also involved, and ignore if not.
-            if (x.raw.toLowerCase().includes("hydrant") || x.title.toLowerCase().includes("hydrant")) {
-                if (
-                    x.raw.toLowerCase().includes("pedestrian") || x.title.toLowerCase().includes("pedestrian") ||
-                    x.raw.toLowerCase().includes("bicyclist") || x.title.toLowerCase().includes("bicyclist") ||
-                    x.raw.toLowerCase().includes("bicycle") || x.title.toLowerCase().includes("bicycle") ||
-                    x.raw.toLowerCase().includes("scooter") || x.title.toLowerCase().includes("scooter")
-                ) {
-                    return true
-                } else {
-                    return false;
-                }
-            }
-        });
+            x.raw.toLowerCase().includes("scooter")
+        );
 
     // Get incidents from the last 24 hours with pedestrian or bicyuclist in an update
     // It's possible an incident could have a description that doesn't involve a pedestrian
     // or bicyclist but in a 911 update Citizen later learns they were involved
     const incidentsWithRelevantUpdates = allIncidents
-        .filter(x => x.ts >= yesterdayTimestampInMs)
         .filter(x => {
             for (const updateObjectKey in x.updates) {
                 const updateText = x.updates[updateObjectKey].text.toLowerCase();
                 if (
                     updateText.includes("robbed") ||
                     updateText.includes("burglary") ||
-                    updateText.includes("breaking into")
+                    updateText.includes("breaking into") ||
+                    updateText.includes("stolen")
                 ) {
                     return false;
                 } else if (
                     updateText.includes("pedestrian") ||
+                    updateText.includes("cyclist") ||
                     updateText.includes("bicyclist") ||
                     updateText.includes("struck by vehicle") ||
+                    updateText.includes("hit by vehicle") ||
                     updateText.includes("bicycle") ||
                     updateText.includes("scooter")
                 ) {
@@ -265,6 +260,26 @@ const filterIncidents = (allIncidents) => {
 
     return Array.from(new Set([...relevantIncidents, ...incidentsWithRelevantUpdates]));
 };
+
+const filterVehicleOnlyIncidents = (allIncidents) =>
+    allIncidents
+        // include vehicle collision but exclude pedestrian, bike, etc
+        .filter(x =>
+            (
+                x.raw.toLowerCase().includes('vehicle collision') ||
+                x.raw.toLowerCase().includes('vehicle flipped') ||
+                x.raw.toLowerCase().includes('overturned vehicle') ||
+                x.raw.toLowerCase().includes('dragging vehicle') ||
+                x.raw.toLowerCase().includes('hit-and-run')
+            ) &&
+            (
+                !x.raw.toLowerCase().includes('pedestrian') &&
+                !x.raw.toLowerCase().includes('bicyclist') &&
+                !x.raw.toLowerCase().includes('cyclist') &&
+                !x.raw.toLowerCase().includes('scooter') &&
+                !x.raw.toLowerCase().includes('struck by vehicle')
+            )
+        );
 
 const validateInputs = () => {
     assert.notEqual(argv.location, undefined, 'location must be passed in');
@@ -278,6 +293,33 @@ const validateInputs = () => {
         assert.notEqual(representatives[argv.location], undefined, 'must have representative info for location if calling with tweetReps flag');
         assert.notEqual(representatives[argv.location].geojsonUrl, undefined, 'must have geojsonUrl set so incidents can be mapped to representative districts if calling with tweetReps flag');
         assert.notEqual(representatives[argv.location].repesentativeDistrictTerm, undefined, 'must have repesentativeDistrictTerm set if calling with tweetReps flag');
+    }
+};
+
+const handleIncidentTweets = async (filteredIncidentsOfType, type, client) => {
+
+    if (argv.tweetReps) {
+        await downloadCityCouncilPolygons(representatives[argv.location].geojsonUrl);
+        filteredIncidentsOfType = mapIncidentsToCityCouncilDistricts(filteredIncidentsOfType);
+    }
+
+    // await tweetSummaryOfLast24Hours(client, filteredIncidentsOfType, type);
+
+    for (const incident of filteredIncidentsOfType) {
+        console.log(incident.raw);
+        // wait one minute to prevent rate limiting
+        // rate limited from twitter? surely a few seconds would be enough? 
+        // success on 30s, failed on 10s but seemed like it was bc of google api
+        await delay(30000);
+
+        try {
+            await downloadMapImages(incident, incident.key);
+        } catch (err) {
+            console.log('error downloading map images: ', err);
+        }
+
+
+        await tweetIncidentThread(client, incident);
     }
 };
 
@@ -295,23 +337,19 @@ const main = async () => {
     resetAssetsFolder();
 
     const allIncidents = await fetchIncidents();
-    let filteredIncidents = filterIncidents(allIncidents);
+    const yesterdayTimestampInMs = Date.now() - 86400000;
+    const todaysIncidents = allIncidents.filter(x => x.ts >= yesterdayTimestampInMs);
 
-    if (argv.tweetReps) {
-        await downloadCityCouncilPolygons(representatives[argv.location].geojsonUrl);
-        filteredIncidents = mapIncidentsToCityCouncilDistricts(filteredIncidents);
-    }
+    // test data
+    // const allIncidents = nycData.results;
 
-    await tweetSummaryOfLast24Hours(client, filteredIncidents);
+    let filteredPedBikeIncidents = filterPedBikeIncidents(todaysIncidents);
+    const incidentTitles = filteredPedBikeIncidents.map(x => x.title);
+    const remainingIncidents = allIncidents.filter(x => incidentTitles.indexOf(x.title) === -1);
+    let filteredVehicleOnlyIncidents = filterVehicleOnlyIncidents(remainingIncidents);
 
-    for (const incident of filteredIncidents) {
-        // wait one minute to prevent rate limiting
-        await delay(60000);
-
-        await downloadMapImages(incident, incident.key);
-
-        await tweetIncidentThread(client, incident);
-    }
+    handleIncidentTweets(filteredPedBikeIncidents, pedBike, client);
+    handleIncidentTweets(filteredVehicleOnlyIncidents, vehicleOnly, client);
 };
 
 main();
