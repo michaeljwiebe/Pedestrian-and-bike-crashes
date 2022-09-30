@@ -5,3 +5,5 @@ assets-*/
 
 # IDE files
 .idea
+
+build/
