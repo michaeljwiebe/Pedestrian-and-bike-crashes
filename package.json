@@ -4,7 +4,9 @@
   "description": "Twitter both that tweets incidents involving pedestrians and bicyclists",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "philly": "node index.js --location philadelphia --tweetSatellite",
+    "richmond": "node index.js --location richmond --tweetSatellite"
   },
   "repository": {
     "type": "git",
