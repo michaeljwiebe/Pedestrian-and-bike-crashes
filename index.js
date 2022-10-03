@@ -3,7 +3,7 @@ const representatives = require('./representatives.js');
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs-extra');
-const { TwitterApi } = require('twitter-api-v2');
+const {TwitterApi} = require('twitter-api-v2');
 const argv = require('minimist')(process.argv.slice(2));
 const turf = require('@turf/turf');
 const assert = require('node:assert/strict');
@@ -32,6 +32,7 @@ const fetchIncidents = async () => {
   const limit = 200 * daysToTweet; // 200 was not high enough for NYC data
   // https://citizen.com/api/incident/trending?lowerLatitude=37.425128&lowerLongitude=-77.669312&upperLatitude=37.716030&upperLongitude=-77.284938&fullResponse=true&limit=200
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`;
+  console.log('citizenUrl', citizenUrl)
   const response = await axios({
     url: citizenUrl,
     method: 'GET',
@@ -132,27 +133,27 @@ const resetAssetsFolder = () => {
  * @param {*} incident the Citizen incident to tweet
  */
 const tweetIncidentThread = async (client, incident) => {
-  const incidentDate = new Date(incident.ts).toLocaleString('en-US', { timeZone: keys[argv.location].timeZone });
+  const incidentDate = new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone});
   const tweets = [];
   const media_ids = [];
 
   // Upload map images and add alt text
   const citizenMapMediaId = await client.v1.uploadMedia(`${assetDirectory}/${incident.key}.png`);
-  const metadata = await client.v1.createMediaMetadata(citizenMapMediaId, { alt_text: { text: `A photo of a map at ${incident.address}. Coordinates: ${incident.latitude}, ${incident.longitude}` } });
+  const metadata = await client.v1.createMediaMetadata(citizenMapMediaId, {alt_text: {text: `A photo of a map at ${incident.address}. Coordinates: ${incident.latitude}, ${incident.longitude}`}});
   media_ids.push(citizenMapMediaId);
 
   if (argv.tweetSatellite) {
     const satelliteMapMediaId = await client.v1.uploadMedia(`${assetDirectory}/${incident.key}_satellite.png`);
-    await client.v1.createMediaMetadata(satelliteMapMediaId, { alt_text: { text: `A satellite photo of a map at ${incident.address}. Coordinates: ${incident.latitude}, ${incident.longitude}` } });
+    await client.v1.createMediaMetadata(satelliteMapMediaId, {alt_text: {text: `A satellite photo of a map at ${incident.address}. Coordinates: ${incident.latitude}, ${incident.longitude}`}});
     media_ids.push(satelliteMapMediaId);
   }
 
   // Add initial tweet with map image linked
-  tweets.push({ text: `${incident.raw}\n\n${incidentDate}`, media: { media_ids } });
+  tweets.push({text: `${incident.raw}\n\n${incidentDate}`, media: {media_ids}});
 
   for (const updateKey in incident.updates) {
     if (incident.updates[updateKey].type != 'ROOT') {
-      const updateTime = new Date(incident.updates[updateKey].ts).toLocaleString('en-US', { timeZone: keys[argv.location].timeZone });
+      const updateTime = new Date(incident.updates[updateKey].ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone});
       tweets.push(`${incident.updates[updateKey].text}\n\n${updateTime}`);
     }
   }
@@ -246,7 +247,6 @@ const filterVehicleOnlyIncidents = (allIncidents) =>
       x.raw.toLowerCase().includes('overturned vehicle') ||
       x.raw.toLowerCase().includes('dragging vehicle') ||
       x.raw.toLowerCase().includes('hit-and-run')
-
     );
 
 const validateInputs = () => {
@@ -297,7 +297,7 @@ const saveIncidentSummaries = (array) => {
         key: obj.key,
         raw: obj.raw,
         ts: obj.ts,
-        date: new Date(obj.ts).toLocaleString('en-US', { timeZone: keys[argv.location].timeZone }),
+        date: new Date(obj.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}),
         ll: obj.ll,
         shareMap: obj.shareMap
       }))
@@ -365,3 +365,4 @@ const main = async () => {
 
 main();
 // eliminateDuplicateIncidentsAndUpdateFile([]);
+// fetchIncidents()
