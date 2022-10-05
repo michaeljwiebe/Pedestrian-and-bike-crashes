@@ -8,7 +8,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const turf = require('@turf/turf');
 const assert = require('node:assert/strict');
 
-const testData = require('./archive/tweetIncidentSummaries-richmond.json');
+// const testData = require('./archive/tweetIncidentSummaries-richmond.json');
 
 const assetDirectory = `./assets-${argv.location}`;
 
@@ -210,44 +210,73 @@ const tweetSummaryOfLast24Hours = async (client, incidents, numPedIncidents) => 
 
 };
 
+
+/**
+ * Filters Citizen incidents and returns ones not involving weapons or robbery.
+ * @param {Array} array an array of Citizen incidents
+ * @returns an array of Citizen incidents not involving weapons or robbery
+ */
+const excludeWeaponsAndRobbery = (array) => array.filter(x =>
+  !containsWeaponsAndRobberyText(x.raw.toLowerCase())
+);
+
+const containsWeaponsAndRobberyText = (text) =>
+  text.includes('robbed') ||
+  text.includes('buglar') ||
+  text.includes('breaking into') ||
+  text.includes('stolen') ||
+  text.includes('gunmen') ||
+  text.includes('gunman') ||
+  text.includes('gunfire') ||
+  text.includes('armed');
+
+
 /**
  * Filters Citizen incidents and returns ones involving Pedestrian and Bicyclists.
  * @param {Array} allIncidents an array of Citizen incidents
  * @returns an array of Citizen incidents mentioning Pedestrians or Bicyclists.
  */
-const filterPedBikeIncidents = (allIncidents) => {
+const filterPedBikeIncidents = (potentialIncidents) => {
   // Get incidents from the last 24 hours with pedestrian or bicyclist in the top level description
-  const relevantIncidents = excludeWeaponsAndRobbery(allIncidents).filter(x =>
-    x.raw.toLowerCase().includes("pedestrian") ||
-    x.raw.toLowerCase().includes("cyclist") ||
-    x.raw.toLowerCase().includes("struck by vehicle") ||
-    x.raw.toLowerCase().includes("hit by vehicle") ||
-    x.raw.toLowerCase().includes("bicycle") ||
-    x.raw.toLowerCase().includes("scooter")
-  );
-
-  return relevantIncidents;
+  return potentialIncidents.filter(x => containsPedBikeText(x.raw.toLowerCase()));
 };
 
-const excludeWeaponsAndRobbery = (array) => array.filter(x =>
-  !x.raw.toLowerCase().includes("robbed") &&
-  !x.raw.toLowerCase().includes("burglar") &&
-  !x.raw.toLowerCase().includes("stolen") &&
-  !x.raw.toLowerCase().includes("gunmen") &&
-  !x.raw.toLowerCase().includes("armed") &&
-  !x.raw.toLowerCase().includes("gunman")
-);
+const containsPedBikeText = (text) =>
+  text.includes("pedestrian") ||
+  text.includes("cyclist") ||
+  text.includes("struck by vehicle") ||
+  text.includes("hit by vehicle") ||
+  text.includes("bicycle") ||
+  text.includes("scooter");
 
-const filterVehicleOnlyIncidents = (allIncidents) =>
-  excludeWeaponsAndRobbery(allIncidents)
-    // include vehicle collision but exclude pedestrian, bike, etc
-    .filter(x =>
-      x.raw.toLowerCase().includes('vehicle collision') ||
-      x.raw.toLowerCase().includes('vehicle flipped') ||
-      x.raw.toLowerCase().includes('overturned vehicle') ||
-      x.raw.toLowerCase().includes('dragging vehicle') ||
-      x.raw.toLowerCase().includes('hit-and-run')
-    );
+// include vehicle collision but exclude pedestrian, bike, etc
+const filterVehicleOnlyIncidents = (nonPedBikeInicidents) =>
+  nonPedBikeInicidents.filter(x => containsVehicleOnlyText(x.raw.toLowerCase()));
+
+
+const containsVehicleOnlyText = (text) =>
+  text.includes('vehicle collision') ||
+  text.includes('vehicle flipped') ||
+  text.includes('overturned vehicle') ||
+  text.includes('dragging vehicle') ||
+  text.includes('hit-and-run');
+
+const filterOtherIncidents = (allIncidents) =>
+  allIncidents.filter(x =>
+    x.raw.toLowerCase().includes('vehicular assault')
+  );
+
+const filterIncidentsWithPedBikeUpdates = (incidents) =>
+  incidents.filter(x => {
+      for (const updateObjectKey in x.updates) {
+        const updateText = x.updates[updateObjectKey].text.toLowerCase();
+        if (!containsWeaponsAndRobberyText(updateText) && containsPedBikeText(updateText)) {
+          return true
+        }
+      }
+      return false
+    }
+  )
 
 const validateInputs = () => {
   assert.notEqual(argv.location, undefined, 'location must be passed in');
@@ -277,7 +306,7 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
     // rate limited from twitter? surely a few seconds would be enough?
     // success on 30s, 20s, 5s failed on 10s but seemed like it was bc of google api
 
-    await delay(2000);
+    await delay(3000);
     try {
       await downloadMapImages(incident, incident.key);
     } catch (err) {
@@ -305,19 +334,33 @@ const saveIncidentSummaries = (array) => {
   );
 };
 
-const eliminateDuplicateIncidentsAndUpdateFile = (array) => {
-  let summaryArr = [];
+const eliminateDuplicateIncidents = (array) => {
+  let previouslySavedList = [];
   try {
-    summaryArr = JSON.parse(fs.readFileSync(tweetIncidentSummaryFile));
+    const summaryFile = fs.readFileSync(tweetIncidentSummaryFile);
+    previouslySavedList = JSON.parse(summaryFile)
   } catch (err) {
-    console.log(err.message);
+    console.log('error reading file: ', err.message);
   }
-  const incidentKeys = summaryArr.map(summary => summary.key);
-  const trimmedArray = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
+  const incidentKeys = previouslySavedList.map(summary => summary.key);
+  const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
   // this is dumb but undefined is getting in there and i'm not going to figure out why now.
-  saveIncidentSummaries([...summaryArr, ...trimmedArray].filter(obj => Boolean(obj.raw)));
-  return trimmedArray.filter(obj => Boolean(obj.raw));
+  saveIncidentSummaries([...previouslySavedList, ...finalList]);
+  return {finalList, previouslySavedList};
 };
+
+const handleFiltering = (potentialIncidents) => {
+  const filteredPedBikeIncidents = filterPedBikeIncidents(potentialIncidents);
+  const incidentTitles = filteredPedBikeIncidents.map(x => x.title);
+  // remove ped/bike incidents from list to see if others are vehicle only
+  const remainingIncidents = potentialIncidents.filter(x => incidentTitles.indexOf(x.title) === -1);
+  const incidentsWithRelevantUpdates = filterIncidentsWithPedBikeUpdates(remainingIncidents)
+  const filteredVehicleOnlyIncidents = filterVehicleOnlyIncidents(remainingIncidents);
+  return {
+    incidentList: [...filteredVehicleOnlyIncidents, ...incidentsWithRelevantUpdates, ...filteredPedBikeIncidents],
+    summary: {pedBikeIncidents: filteredPedBikeIncidents.length + incidentsWithRelevantUpdates.length}
+  };
+}
 
 const main = async () => {
   validateInputs();
@@ -340,29 +383,36 @@ const main = async () => {
   const allIncidents = await fetchIncidents();
   const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
   const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
+  const potentialIncidents = excludeWeaponsAndRobbery(currentIncidents)
 
-  const filteredPedBikeIncidents = filterPedBikeIncidents(currentIncidents);
-  const incidentTitles = filteredPedBikeIncidents.map(x => x.title);
-  const remainingIncidents = currentIncidents.filter(x => incidentTitles.indexOf(x.title) === -1);
-  const filteredVehicleOnlyIncidents = filterVehicleOnlyIncidents(remainingIncidents);
-  let incidentList = [...filteredVehicleOnlyIncidents, filteredPedBikeIncidents];
-  // check for duplicates
-  incidentList = eliminateDuplicateIncidentsAndUpdateFile(incidentList);
+  let {incidentList, summary} = handleFiltering(potentialIncidents)
+  console.log('filtered incident list', incidentList.length)
+  // check for saved duplicates
+  const {finalList, previouslySavedList} = eliminateDuplicateIncidents(incidentList);
 
-  console.log(incidentList.map(i => i.raw));
+  console.log('incident list raw', finalList.map(i => i.raw));
 
   // check to see if there were incidents today;
   // console.log('allIncidents', allIncidents.length);
-  // console.log('incidentList', incidentList.length);
-  // console.log(incidentList.map(i => ({ raw: i.raw, time: new Date(i.ts).toLocaleString() })));
+  // console.log('finalList', finalList.length);
+  // console.log(finalList.map(i => ({ raw: i.raw, time: new Date(i.ts).toLocaleString() })));
 
   // next line is where the magic happens
-  handleIncidentTweets(client, incidentList);
+  handleIncidentTweets(client, finalList);
 
   // tweet the summary last because then it'll always be at the top of the timeline
-  tweetSummaryOfLast24Hours(client, incidentList, filteredPedBikeIncidents.length);
+  tweetSummaryOfLast24Hours(client, finalList, summary.pedBikeIncidents);
+
+  saveIncidentSummaries([...previouslySavedList, ...finalList]);
 };
 
 main();
-// eliminateDuplicateIncidentsAndUpdateFile([]);
+// eliminateDuplicateIncidents([]);
 // fetchIncidents()
+
+module.exports = {
+  filterIncidentsWithPedBikeUpdates,
+  filterVehicleOnlyIncidents,
+  filterPedBikeIncidents,
+  handleFiltering
+}
