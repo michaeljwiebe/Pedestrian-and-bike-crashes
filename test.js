@@ -20,4 +20,6 @@ const checkText = (x) => ({
 
 // console.log(filterVehicleOnlyIncidents(incidents).map(x => checkText(x)))
 
-// console.log(handleFiltering(data.results).map(x => checkText(x)))
+const {summary, incidentList} = handleFiltering(data.results);
+console.log('summary', summary)
+console.log('incidentList', incidentList.length)
