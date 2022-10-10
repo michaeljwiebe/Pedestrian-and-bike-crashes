@@ -162,8 +162,8 @@ const tweetIncidentThread = async (client, incident) => {
     const representative = representatives[argv.location][incident.cityCouncilDistrict];
     tweets.push(`This incident occurred in ${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`);
   }
-
   try {
+    console.log('num tweets in thread: ', tweets.length);
     await client.v2.tweetThread(tweets);
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err);
@@ -175,17 +175,16 @@ const tweetIncidentThread = async (client, incident) => {
  * @param {*} client the instantiated Twitter client
  * @param {*} incidents the relevant Citizen incidents
  */
-const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
+const tweetSummaryOfLast24Hours = async (client, numIncidents, summary) => {
   const lf = new Intl.ListFormat('en');
   const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions} = summary;
-  const numIncidents = incidents.length;
   let firstTweet = numIncidents > 0
     ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.
     ${hitAndRuns || pedBikeIncidents || overturnedVehicles || collisions ? '\n' : ''}
     ${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}
     ${hitAndRuns > 0 ? `\n${hitAndRuns} were hit-and-runs` : ''}
     ${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipped vehicles` : ''}
-    ${collisions > 0 ? `\n${collisions} were collisions` : ''}`
+    ${collisions > 0 ? `${collisions === numIncidents ? `all` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the RVA area.`;
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred.`;
   const tweets = [firstTweet];
@@ -216,7 +215,6 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
 
 };
 
-
 /**
  * Filters Citizen incidents and returns ones not involving weapons or robbery.
  * @param {Array} array an array of Citizen incidents
@@ -235,7 +233,6 @@ const containsWeaponsAndRobberyText = (text) =>
   text.includes('gunman') ||
   text.includes('gunfire') ||
   text.includes('armed');
-
 
 /**
  * Filters Citizen incidents and returns ones involving Pedestrian and Bicyclists.
@@ -308,17 +305,16 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
 
   for (const incident of filteredIncidents) {
     console.log(incident.raw);
-    // wait one minute to prevent rate limiting
-    // rate limited from twitter? surely a few seconds would be enough?
-    // success on 30s, 20s, 5s failed on 10s but seemed like it was bc of google api
 
-    await delay(3000);
     try {
       await downloadMapImages(incident, incident.key);
     } catch (err) {
       console.log('error on downloadMapImages: ', err);
     }
     await tweetIncidentThread(client, incident);
+
+    // wait one minute to prevent rate limiting... or 3 secs generally works
+    await delay(4000);
   }
 };
 
@@ -334,7 +330,8 @@ const saveIncidentSummaries = (array) => {
         ts: obj.ts,
         date: new Date(obj.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}),
         ll: obj.ll,
-        shareMap: obj.shareMap
+        shareMap: obj.shareMap,
+        updates: obj.updates
       }))
     )
   );
@@ -388,33 +385,21 @@ const main = async () => {
 
   resetAssetsFolder();
 
-  // uncomment next section when using test data
-  // const currentIncidents = testData.results;
-  // console.log('all pedbike', filterPedBikeIncidents(currentIncidents).map(i => ({ raw: i.raw, time: new Date(i.ts).toLocaleString() })));
-  // console.log('all vehicle', filterVehicleOnlyIncidents(currentIncidents).map(i => ({ raw: i.raw, time: new Date(i.ts).toLocaleString() })));
-
   const allIncidents = await fetchIncidents();
   const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
   const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
   const potentialIncidents = excludeWeaponsAndRobbery(currentIncidents)
 
   let {incidentList, summary} = handleFiltering(potentialIncidents)
-  console.log('filtered incident list', incidentList.length)
+
   // check for saved duplicates
   const {finalList, previouslySavedList} = eliminateDuplicateIncidents(incidentList);
 
   console.log('incident list raw', finalList.map(i => i.raw));
-
-  // check to see if there were incidents today;
-  // console.log('allIncidents', allIncidents.length);
-  // console.log('finalList', finalList.length);
-  // console.log(finalList.map(i => ({ raw: i.raw, time: new Date(i.ts).toLocaleString() })));
-
-  // next line is where the magic happens
   await handleIncidentTweets(client, finalList);
 
   // tweet the summary last because then it'll always be at the top of the timeline
-  tweetSummaryOfLast24Hours(client, finalList, summary);
+  tweetSummaryOfLast24Hours(client, finalList.length, summary);
 
   saveIncidentSummaries([...previouslySavedList, ...finalList]);
 };
