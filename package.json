@@ -5,14 +5,24 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "philly": "node index.js --location philadelphia --tweetSatellite",
-    "richmond": "node index.js --location richmond --tweetSatellite"
+    "build": "rm -rf build; tsc -b",
+    "philly": "node index.js --location Philly --tweetSatellite",
+    "rva": "node index.js --location RVA --tweetSatellite"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cailinpitt/Pedestrian-and-bike-crashes.git"
   },
-  "author": "cailinpitt1@gmail.com",
+  "contributors": [
+    {
+      "name": "Cailin Pitt",
+      "email": "cailinpitt1@gmail.com"
+    },
+    {
+      "name": "Michael Wiebe",
+      "email": "wiebe.michael.j@gmail.com"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cailinpitt/Pedestrian-and-bike-crashes/issues"
