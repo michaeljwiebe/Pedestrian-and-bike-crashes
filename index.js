@@ -316,8 +316,9 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
     }
     await tweetIncidentThread(client, incident)
 
-    // wait one minute to prevent rate limiting... or 3 secs generally works
-    await delay(4000)
+    // wait one minute to prevent rate limiting... or 3-4 secs generally works
+    // i get 503 responses 'Service Unavailable' but i don't think it depends on this delay
+    await delay(2000)
   }
 }
 
@@ -361,7 +362,6 @@ const excludeList = (fullList, listToExclude) => {
 }
 
 const handleFiltering = (potentialIncidents) => {
-  // TODO: build summary obj first including updates. one fn, checks raw and updates for passed-in string
   const pedBikeIncidents = filterPedBikeIncidents(potentialIncidents);
   // remove ped/bike incidents from list to see if others are vehicle only
   const remainingIncidents = excludeList(potentialIncidents, pedBikeIncidents);
