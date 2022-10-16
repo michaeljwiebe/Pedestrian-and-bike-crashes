@@ -28,7 +28,6 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const fetchIncidents = async () => {
   const location = keys[argv.location]
   const limit = 200 * daysToTweet // 200 was not high enough for NYC data
-  // https://citizen.com/api/incident/trending?lowerLatitude=37.425128&lowerLongitude=-77.669312&upperLatitude=37.716030&upperLongitude=-77.284938&fullResponse=true&limit=200
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log('citizenUrl', citizenUrl);
   const response = await axios({
@@ -161,10 +160,10 @@ const tweetIncidentThread = async (client, incident) => {
     tweets.push(`This incident occurred in ${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`)
   }
   try {
-    console.log('num tweets in thread: ', tweets.length)
     await client.v2.tweetThread(tweets)
   } catch (err) {
-    console.log('error on tweetIncidentThread: ', err)
+    console.log('error on tweetIncidentThread: ', err.message)
+    console.log('thread', tweets.map(x => x.text))
   }
 }
 
@@ -176,14 +175,16 @@ const tweetIncidentThread = async (client, incident) => {
 const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
   const numIncidents = incidents.length
   const lf = new Intl.ListFormat('en')
-  const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault} = summary
+  const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary
   let firstTweet = numIncidents > 0
     ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.
-    ${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}
-    ${hitAndRuns > 0 ? `\n${hitAndRuns} were hit-and-runs` : ''}
-    ${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}
-    ${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}
-    ${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
+    ${pedBikeIncidents || injuries || hitAndRuns || vehicularAssault || overturnedVehicles || collisions ? `\n` : ''}
+    ${pedBikeIncidents > 0 ? `${pedBikeIncidents} involved pedestrians or cyclists` : ''}
+    ${injuries > 0 ? `${injuries} resulted in injuries` : ''}
+    ${hitAndRuns > 0 ? `${hitAndRuns} were hit-and-runs` : ''}
+    ${vehicularAssault > 0 ? `${vehicularAssault} involved vehicular assault` : ''}
+    ${overturnedVehicles > 0 ? `${overturnedVehicles} involved overturning/flipping vehicles` : ''}
+    ${collisions > 0 ? `${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred.`
   const tweets = [firstTweet]
@@ -212,6 +213,7 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
     await client.v2.tweetThread(tweets)
   } catch (err) {
     console.log('error on tweetSummaryOfLast24Hours: ', err)
+    console.log('errored out tweets', tweets)
   }
 
 }
@@ -227,7 +229,7 @@ const excludeWeaponsAndRobbery = (array) => array.filter(x =>
 
 const containsWeaponsAndRobberyText = (text) =>
   text.includes('robbed') ||
-  text.includes('buglar') ||
+  text.includes('burglar') ||
   text.includes('breaking into') ||
   text.includes('stolen') ||
   text.includes('gunmen') ||
@@ -351,7 +353,6 @@ const eliminateDuplicateIncidents = (array) => {
   }
   const incidentKeys = previouslySavedList.map(summary => summary.key);
   const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
-  // this is dumb but undefined is getting in there and i'm not going to figure out why now.
   saveIncidentSummaries([...previouslySavedList, ...finalList]);
   return {finalList, previouslySavedList};
 }
@@ -377,7 +378,8 @@ const handleFiltering = (potentialIncidents) => {
       hitAndRuns: rawTextArr.filter(x => x.includes('hit-and-run')).length,
       overturnedVehicles: rawTextArr.filter(x => (x.includes('overturned vehicle') || (x.includes('flipped') && x.includes('vehicle')))).length,
       vehicularAssault: rawTextArr.filter(x => x.includes('vehicular assault')).length,
-      collisions: rawTextArr.filter(x => x.includes('collision')).length
+      collisions: rawTextArr.filter(x => x.includes('collision')).length,
+      injuries: fullIncidentList.filter(x => x.raw.includes('injur')).length
     }
   };
 }
