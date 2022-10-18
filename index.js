@@ -177,14 +177,7 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
   const lf = new Intl.ListFormat('en')
   const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary
   let firstTweet = numIncidents > 0
-    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.
-    ${pedBikeIncidents || injuries || hitAndRuns || vehicularAssault || overturnedVehicles || collisions ? `\n` : ''}
-    ${pedBikeIncidents > 0 ? `${pedBikeIncidents} involved pedestrians or cyclists` : ''}
-    ${injuries > 0 ? `${injuries} resulted in injuries` : ''}
-    ${hitAndRuns > 0 ? `${hitAndRuns} were hit-and-runs` : ''}
-    ${vehicularAssault > 0 ? `${vehicularAssault} involved vehicular assault` : ''}
-    ${overturnedVehicles > 0 ? `${overturnedVehicles} involved overturning/flipping vehicles` : ''}
-    ${collisions > 0 ? `${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
+    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} were hit-and-runs` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred.`
   const tweets = [firstTweet]
@@ -379,7 +372,7 @@ const handleFiltering = (potentialIncidents) => {
       overturnedVehicles: rawTextArr.filter(x => (x.includes('overturned vehicle') || (x.includes('flipped') && x.includes('vehicle')))).length,
       vehicularAssault: rawTextArr.filter(x => x.includes('vehicular assault')).length,
       collisions: rawTextArr.filter(x => x.includes('collision')).length,
-      injuries: fullIncidentList.filter(x => x.raw.includes('injur')).length
+      injuries: rawTextArr.filter(x => x.includes('injur')).length
     }
   };
 }
