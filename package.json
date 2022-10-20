@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build; tsc -b",
     "philly": "node index.js --location Philly --tweetSatellite",
-    "rva": "node index.js --location RVA --tweetSatellite"
+    "rva": "node index.js --location RVA --tweetSatellite",
+    "kc": "node index.js --location KC --tweetSatellite"
   },
   "repository": {
     "type": "git",
