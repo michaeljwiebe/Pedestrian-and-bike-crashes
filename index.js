@@ -151,6 +151,7 @@ const tweetIncidentThread = async (client, incident) => {
   for (const updateKey in incident.updates) {
     if (incident.updates[updateKey].type != 'ROOT') {
       const updateTime = new Date(incident.updates[updateKey].ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone})
+      console.log(incident.updates[updateKey])
       tweets.push(`${incident.updates[updateKey].text}\n\n${updateTime}`)
     }
   }
@@ -159,8 +160,9 @@ const tweetIncidentThread = async (client, incident) => {
     const representative = representatives[argv.location][incident.cityCouncilDistrict]
     tweets.push(`This incident occurred in ${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`)
   }
+  const filteredTweets = tweets.filter(tweet => tweet);
   try {
-    await client.v2.tweetThread(tweets)
+    await client.v2.tweetThread(filteredTweets)
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err.message)
     console.log('thread', tweets.map(x => x.text))
@@ -314,7 +316,7 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
     // wait one minute to prevent rate limiting... or 3-4 secs generally works
     // on a brand new account, i had it set at 2 seconds (working for established accounts),
     // but it cut me off mid way through the tweets
-    await delay(10000)
+    await delay(5000)
   }
 }
 
