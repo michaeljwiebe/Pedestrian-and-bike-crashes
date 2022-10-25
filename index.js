@@ -8,7 +8,7 @@ const argv = require('minimist')(process.argv.slice(2))
 const turf = require('@turf/turf')
 const assert = require('node:assert/strict')
 
-const assetDirectory = `./assets-${argv.location}`
+const assetDirectory = `./assets/${argv.location}`
 
 const daysToTweet = argv.days ? Number(argv.days) : 1
 
@@ -151,7 +151,6 @@ const tweetIncidentThread = async (client, incident) => {
   for (const updateKey in incident.updates) {
     if (incident.updates[updateKey].type != 'ROOT') {
       const updateTime = new Date(incident.updates[updateKey].ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone})
-      console.log(incident.updates[updateKey])
       tweets.push(`${incident.updates[updateKey].text}\n\n${updateTime}`)
     }
   }
@@ -166,7 +165,14 @@ const tweetIncidentThread = async (client, incident) => {
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err.message)
     console.log('thread', tweets.map(x => x.text))
+    const errFile = fs.readFileSync(errorFile);
+    const errors = JSON.parse(errFile);
+    fs.writeFile(
+      errorFile,
+      JSON.stringify([...errors, tweets])
+    );
   }
+
 }
 
 /**
@@ -315,16 +321,17 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
 
     // wait one minute to prevent rate limiting... or 3-4 secs generally works
     // on a brand new account, i had it set at 2 seconds (working for established accounts),
-    // but it cut me off mid way through the tweets
-    await delay(5000)
+    // but it cut me off mid way through the tweets. using 30 secs had no issues with a long list
+    await delay(20000)
   }
 }
 
 const tweetIncidentSummaryFile = `./archive/tweetIncidentSummaries-${argv.location}.json`
+const errorFile = `./errors/${argv.location}.json`
 
-const saveIncidentSummaries = (array) => {
+const saveIncidentSummaries = (array, path) => {
   fs.writeFile(
-    tweetIncidentSummaryFile,
+    path,
     JSON.stringify(
       array.map(obj => ({
         key: obj.key,
@@ -349,7 +356,7 @@ const eliminateDuplicateIncidents = (array) => {
   }
   const incidentKeys = previouslySavedList.map(summary => summary.key);
   const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
-  saveIncidentSummaries([...previouslySavedList, ...finalList]);
+  saveIncidentSummaries([...previouslySavedList, ...finalList], tweetIncidentSummaryFile);
   return {finalList, previouslySavedList};
 }
 
@@ -414,8 +421,6 @@ const main = async () => {
 
     // tweet the summary last because then it'll always be at the top of the timeline
     tweetSummaryOfLast24Hours(client, finalList, summary);
-
-    saveIncidentSummaries([...previouslySavedList, ...finalList]);
   }
 }
 
