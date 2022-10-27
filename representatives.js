@@ -16,4 +16,7 @@ module.exports = {
     '12': '@antoniolewisatl',
     atLarge: ['@Michael_J_Bond', '@WestmorelandATL', '@WaitesKeisha', '@DougShipmanATL'],
   },
+  RVA: ['@DPW_RichmondVA', '@andreasrva', '@KatherineJRVA', '@AnnCan2020', '@kristenRVA', '@Stephanie4RVA', '@ellenrva', '@CynthiaNewbille', '@TrammellReva', '@thedrmikejones'],
+  Philly: [],
+  KC: []
 };

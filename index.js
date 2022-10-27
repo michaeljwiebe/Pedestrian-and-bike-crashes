@@ -161,10 +161,10 @@ const tweetIncidentThread = async (client, incident) => {
   }
   const filteredTweets = tweets.filter(tweet => tweet);
   try {
-    await client.v2.tweetThread(filteredTweets)
+    await client.v2.tweetThread(filteredTweets);
   } catch (err) {
-    console.log('error on tweetIncidentThread: ', err.message)
-    console.log('thread', tweets.map(x => x.text))
+    console.log('error on tweetIncidentThread: ', err.message);
+    console.log('errored thread', filteredTweets);
     const errFile = fs.readFileSync(errorFile);
     const errors = JSON.parse(errFile);
     fs.writeFile(
@@ -172,7 +172,7 @@ const tweetIncidentThread = async (client, incident) => {
       JSON.stringify([...errors, tweets])
     );
   }
-
+  saveIncidentToArchive(incident)
 }
 
 /**
@@ -188,9 +188,16 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
     ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred.`
+
   const tweets = [firstTweet]
   if (numIncidents > 0) {
     tweets.push(disclaimerTweet)
+  }
+
+  // add a tweet tagging city reps in after the summary
+  if (representatives[argv.location].length) {
+    const councilMembersAndTagsTweet = `${representatives[argv.location].join(' ')}`
+    tweets.push(councilMembersAndTagsTweet)
   }
 
   if (numIncidents > 0 && argv.tweetReps) {
@@ -321,7 +328,9 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
 
     // wait one minute to prevent rate limiting... or 3-4 secs generally works
     // on a brand new account, i had it set at 2 seconds (working for established accounts),
-    // but it cut me off mid way through the tweets. using 30 secs had no issues with a long list
+    // but it cut me off midway through the tweets. using 30 secs had no issues with a long list
+    // i do get occasional errors on threads but the initial tweet goes in that case.
+    // I don't know what is wrong with the follow-up ones
     await delay(20000)
   }
 }
@@ -333,18 +342,20 @@ const saveIncidentSummaries = (array, path) => {
   fs.writeFile(
     path,
     JSON.stringify(
-      array.map(obj => ({
-        key: obj.key,
-        raw: obj.raw,
-        ts: obj.ts,
-        date: new Date(obj.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}),
-        ll: obj.ll,
-        shareMap: obj.shareMap,
-        updates: obj.updates
-      }))
+      array.map(obj => getSummarizedIncident(obj))
     )
   )
 }
+
+const getSummarizedIncident = (incident) => ({
+  key: incident.key,
+  raw: incident.raw,
+  ts: incident.ts,
+  date: new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}),
+  ll: incident.ll,
+  shareMap: incident.shareMap,
+  updates: incident.updates
+})
 
 const eliminateDuplicateIncidents = (array) => {
   let previouslySavedList = [];
@@ -358,6 +369,16 @@ const eliminateDuplicateIncidents = (array) => {
   const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
   saveIncidentSummaries([...previouslySavedList, ...finalList], tweetIncidentSummaryFile);
   return {finalList, previouslySavedList};
+}
+
+const saveIncidentToArchive = (incident) => {
+  try {
+    const summaryFile = fs.readFileSync(tweetIncidentSummaryFile);
+    const previouslySavedList = JSON.parse(summaryFile);
+    saveIncidentSummaries([...previouslySavedList, incident], tweetIncidentSummaryFile);
+  } catch (err) {
+    console.log('error reading file: ', err.message);
+  }
 }
 
 const excludeList = (fullList, listToExclude) => {
@@ -403,7 +424,7 @@ const main = async () => {
   console.log('Incidents total: ', allIncidents.length);
 
   if (allIncidents.length === 0) {
-    await client.v2.tweet(`The Citizen App's 911 reporting service for ${argv.location} seems to be down today. Travel safely out there!`);
+    await client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
   } else {
     resetAssetsFolder();
 
@@ -414,9 +435,9 @@ const main = async () => {
     let {incidentList, summary} = handleFiltering(potentialIncidents);
 
     // check for saved duplicates
-    const {finalList, previouslySavedList} = eliminateDuplicateIncidents(incidentList);
+    // this is also saving them all immediately. i should probably save these one by one on successful tweeting
+    const {finalList} = eliminateDuplicateIncidents(incidentList);
 
-    console.log('incident list raw', finalList.map(i => i.raw));
     await handleIncidentTweets(client, finalList);
 
     // tweet the summary last because then it'll always be at the top of the timeline

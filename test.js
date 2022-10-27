@@ -1,11 +1,12 @@
-const data = require('./testData.json')
-const incidents = require('./testIncident.json')
+// const incidents = require('./testIncident.json')
 const {
   filterIncidentsWithPedBikeUpdates,
   filterVehicleOnlyIncidents,
   filterPedBikeIncidents,
   handleFiltering
 } = require("./index")
+const representatives = require("./representatives");
+const argv = require('minimist')(process.argv.slice(2))
 
 // console.log(data.results.map(x => x.title))
 
@@ -13,6 +14,13 @@ const checkText = (x) => ({
   raw: x.raw,
   updates: x.updates && Object.values(x.updates).map(update => update.text)
 })
+
+
+if (representatives[argv.location].length) {
+  const councilMembersAndTagsTweet = `${representatives[argv.location].join(' ')}`;
+  console.log(councilMembersAndTagsTweet)
+}
+
 
 // console.log(filterIncidentsWithPedBikeUpdates(incidents).map(x => checkText(x)))
 
@@ -27,14 +35,14 @@ const checkText = (x) => ({
 // https://citizen.com/api/incident/trending?lowerLatitude=39.837744&lowerLongitude=-75.315660&upperLatitude=40.136024&upperLongitude=-74.973228&fullResponse=true&limit=200
 
 
-const targetTimeInMs = Date.now() - (86400000 * 1)
-const currentIncidents = data.results.filter(x => x.ts > targetTimeInMs)
-console.log('currentIncidents', currentIncidents.length)
-const {summary, incidentList} = handleFiltering(currentIncidents);
-console.log('summary', summary)
-console.log('incidentList', incidentList.forEach(x => {
-  console.log(new Date(x.ts), x.raw)
-  if (x.updates) {
-    console.log('update text', Object.values(x.updates).map(update => update.text))
-  }
-}))
+// const targetTimeInMs = Date.now() - (86400000 * 1)
+// const currentIncidents = data.results.filter(x => x.ts > targetTimeInMs)
+// console.log('currentIncidents', currentIncidents.length)
+// const {summary, incidentList} = handleFiltering(currentIncidents);
+// console.log('summary', summary)
+// console.log('incidentList', incidentList.forEach(x => {
+//   console.log(new Date(x.ts), x.raw)
+//   if (x.updates) {
+//     console.log('update text', Object.values(x.updates).map(update => update.text))
+//   }
+// }))

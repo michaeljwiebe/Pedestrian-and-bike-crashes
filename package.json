@@ -8,7 +8,8 @@
     "build": "rm -rf build; tsc -b",
     "philly": "node index.js --location Philly --tweetSatellite",
     "rva": "node index.js --location RVA --tweetSatellite",
-    "kc": "node index.js --location KC --tweetSatellite"
+    "kc": "node index.js --location KC --tweetSatellite",
+    "all": "concurrently 'npm run philly' 'npm run kc' 'npm run rva'"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "dependencies": {
     "@turf/turf": "^6.5.0",
     "axios": "^0.27.2",
+    "concurrently": "^7.5.0",
     "fs-extra": "^10.1.0",
     "minimist": "^1.2.6",
     "path": "^0.12.7",
