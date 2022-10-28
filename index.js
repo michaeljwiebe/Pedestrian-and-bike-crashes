@@ -29,7 +29,7 @@ const fetchIncidents = async () => {
   const location = keys[argv.location]
   const limit = 200 * daysToTweet // 200 was not high enough for NYC data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
-  console.log('citizenUrl', citizenUrl);
+  console.log(`${argv.location} url: `, citizenUrl);
   const response = await axios({
     url: citizenUrl,
     method: 'GET',
@@ -164,7 +164,8 @@ const tweetIncidentThread = async (client, incident) => {
     await client.v2.tweetThread(filteredTweets);
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err.message);
-    console.log('errored thread', filteredTweets);
+    console.log('errored filtered thread', filteredTweets);
+    console.log('errored original thread', tweets);
     const errFile = fs.readFileSync(errorFile);
     const errors = JSON.parse(errFile);
     fs.writeFile(
@@ -195,7 +196,7 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
   }
 
   // add a tweet tagging city reps in after the summary
-  if (representatives[argv.location].length) {
+  if (representatives[argv.location].list && representatives[argv.location].list.length) {
     const councilMembersAndTagsTweet = `${representatives[argv.location].join(' ')}`
     tweets.push(councilMembersAndTagsTweet)
   }
@@ -421,7 +422,7 @@ const main = async () => {
 
   const citizenResponse = await fetchIncidents();
   const allIncidents = citizenResponse.data.results;
-  console.log('Incidents total: ', allIncidents.length);
+  console.log(`${argv.location} incidents total: `, allIncidents.length);
 
   if (allIncidents.length === 0) {
     await client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
