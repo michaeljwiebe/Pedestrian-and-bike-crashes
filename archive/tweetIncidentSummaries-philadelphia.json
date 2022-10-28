@@ -1,0 +1,2026 @@
+[
+  {
+    "key": "-NCbkl8LHtdBFWDsqe3l",
+    "raw": "Two-Vehicle Collision at S Broad St & I-95 S, Philadelphia, Pennsylvania, 19148",
+    "ts": 1663893181000,
+    "date": "9/22/2022, 8:33:01 PM",
+    "ll": [
+      39.89918006113692,
+      -75.17481993659159
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCbkl8LHtdBFWDsqe3l.png"
+  },
+  {
+    "key": "-NCbOTKEvx6CgVtdAW60",
+    "raw": "Vehicle Collision at N 10th St & Brown St, Philadelphia, Pennsylvania, 19123",
+    "ts": 1663887074000,
+    "date": "9/22/2022, 6:51:14 PM",
+    "ll": [
+      39.96625003869005,
+      -75.15351992806119
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCbOTKEvx6CgVtdAW60.png"
+  },
+  {
+    "key": "-NCaMX8cAR8Dlr4Lt52h",
+    "raw": "Vehicle Collision With Injuries at S 6th St & Spruce St, Philadelphia, Pennsylvania, 19106",
+    "ts": 1663869788000,
+    "date": "9/22/2022, 2:03:08 PM",
+    "ll": [
+      39.945380021792545,
+      -75.151589911036
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCaMX8cAR8Dlr4Lt52h.png"
+  },
+  {
+    "key": "-NCa1-Ozx2knF6pH9OPz",
+    "raw": "Vehicle Collision  at S 30th St & Chestnut St, Philadelphia, Pennsylvania, 19104",
+    "ts": 1663864145000,
+    "date": "9/22/2022, 12:29:05 PM",
+    "ll": [
+      39.95330004019351,
+      -75.18373995795089
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCa1-Ozx2knF6pH9OPz.png"
+  },
+  {
+    "key": "-NC_HvHz41yQ0u6I127a",
+    "raw": "Man Assaulting Person Following Vehicle Collision at Washington Ave & S Christopher Columbus Blvd, Philadelphia, Pennsylvania, 19147",
+    "ts": 1663852390000,
+    "date": "9/22/2022, 9:13:10 AM",
+    "ll": [
+      39.93335002098854,
+      -75.14358988736923
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NC_HvHz41yQ0u6I127a.png"
+  },
+  {
+    "key": "-NCaHLY7at1ADp31GCDS",
+    "raw": "Vehicle Collision  at S 9th St & Chestnut St, Philadelphia, Pennsylvania, 19107",
+    "ts": 1663868430000,
+    "date": "9/22/2022, 1:40:30 PM",
+    "ll": [
+      39.94982004163313,
+      -75.15546989401591
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCaHLY7at1ADp31GCDS.png"
+  },
+  {
+    "key": "-NCjKRWwNAh4oHYutU4g",
+    "raw": "Hit-and-Run Collision Involving Police Car at E Somerset St & N Front St, Philadelphia, Pennsylvania, 19134",
+    "ts": 1664020294000,
+    "date": "9/24/2022, 7:51:34 AM",
+    "ll": [
+      39.99248003121116,
+      -75.1305699418907
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCjKRWwNAh4oHYutU4g.png"
+  },
+  {
+    "key": "-NCjDbtDL5TlkXER6gS4",
+    "raw": "Vehicle Collision at 2000 Pattison Ave, Philadelphia, Pennsylvania, 19145",
+    "ts": 1664018550000,
+    "date": "9/24/2022, 7:22:30 AM",
+    "ll": [
+      39.906615052307174,
+      -75.18345776031416
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCjDbtDL5TlkXER6gS4.png"
+  },
+  {
+    "key": "-NCitb45YA2Qnhau694u",
+    "raw": "Three-Vehicle Collision at Tyson Ave & Roosevelt Blvd, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664012939000,
+    "date": "9/24/2022, 5:48:59 AM",
+    "ll": [
+      40.04023005722101,
+      -75.05843989320958
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCitb45YA2Qnhau694u.png"
+  },
+  {
+    "key": "-NCiev1_BYWMwEP4E7Ys",
+    "raw": "Vehicle Collision at 2768 N 22nd St, Philadelphia, Pennsylvania, 19132",
+    "ts": 1664009089000,
+    "date": "9/24/2022, 4:44:49 AM",
+    "ll": [
+      39.99714300967619,
+      -75.16746699584996
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCiev1_BYWMwEP4E7Ys.png"
+  },
+  {
+    "key": "-NChxG9f_819XZSGBj5q",
+    "raw": "Report of Group of Men With Rocks Attempting to Hit Man After Vehicle Collision at W Berks St & N Franklin St, Philadelphia, Pennsylvania, 19122",
+    "ts": 1663997121000,
+    "date": "9/24/2022, 1:25:21 AM",
+    "ll": [
+      39.98040003235471,
+      -75.14704993700006
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NChxG9f_819XZSGBj5q.png"
+  },
+  {
+    "key": "-NChX3f5dvbrt7cq40i2",
+    "raw": "Vehicle Collision With People Trapped at 400 W Rockland St, Philadelphia, Pennsylvania, 19120",
+    "ts": 1663990210000,
+    "date": "9/23/2022, 11:30:10 PM",
+    "ll": [
+      40.02548099217048,
+      -75.13100411012154
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NChX3f5dvbrt7cq40i2.png"
+  },
+  {
+    "key": "-NChUO1dy9cCb1CedKDk",
+    "raw": "Vehicle Collision in Stadium District at W Oregon Ave & S Warnock St, Philadelphia, Pennsylvania, 19148",
+    "ts": 1663989311000,
+    "date": "9/23/2022, 11:15:11 PM",
+    "ll": [
+      39.91608003150489,
+      -75.16555994523948
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NChUO1dy9cCb1CedKDk.png"
+  },
+  {
+    "key": "-NCgyOiIxiQmErUhtV7V",
+    "raw": "Vehicle Collision With Lane Restriction at Mile 344 I-76 E, Philadelphia, Pennsylvania, 19104",
+    "ts": 1663980641000,
+    "date": "9/23/2022, 8:50:41 PM",
+    "ll": [
+      39.96319998985305,
+      -75.18388001955294
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCgyOiIxiQmErUhtV7V.png"
+  },
+  {
+    "key": "-NCg-I04KFthKPvywUVI",
+    "raw": "Vehicle Collision at 5700 N 11th St, Philadelphia, Pennsylvania, 19141",
+    "ts": 1663964360000,
+    "date": "9/23/2022, 4:19:20 PM",
+    "ll": [
+      40.039404020663085,
+      -75.13956296962665
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCg-I04KFthKPvywUVI.png"
+  },
+  {
+    "key": "-NCfxBRN_nfl9whaDna2",
+    "raw": "Hit-and-Run Collision With Injuries at N 13th St & Wallace St, Philadelphia, Pennsylvania, 19123",
+    "ts": 1663963547000,
+    "date": "9/23/2022, 4:05:47 PM",
+    "ll": [
+      39.96484003493788,
+      -75.15864990426165
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCfxBRN_nfl9whaDna2.png"
+  },
+  {
+    "key": "-NCf_xnas8KOGde9CIhI",
+    "raw": "Vehicle Collision at 5105 Warren St, Philadelphia, Pennsylvania, 19131",
+    "ts": 1663957458000,
+    "date": "9/23/2022, 2:24:18 PM",
+    "ll": [
+      39.97524398843535,
+      -75.22429998741686
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCf_xnas8KOGde9CIhI.png"
+  },
+  {
+    "key": "-NCf8Wd_87ryHPUIEvXF",
+    "raw": "Woman Struck in Hit-and-Run Collision at S Broad St & McKean St, Philadelphia, Pennsylvania, 19145",
+    "ts": 1663953115000,
+    "date": "9/23/2022, 1:11:55 PM",
+    "ll": [
+      39.92557002228014,
+      -75.16940992100602
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCf8Wd_87ryHPUIEvXF.png"
+  },
+  {
+    "key": "-NCeOknJXOHcqybGodpu",
+    "raw": "Vehicle Collision at Ridge Ave & Acorn St, Philadelphia, Pennsylvania, 19128",
+    "ts": 1663937481000,
+    "date": "9/23/2022, 8:51:21 AM",
+    "ll": [
+      40.03753003666063,
+      -75.22134989277522
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCeOknJXOHcqybGodpu.png"
+  },
+  {
+    "key": "-NCe2t7oTbM3r9tGnx4D",
+    "raw": "Man Injured in Two-Vehicle Collision at N 6th St & W Glenwood Ave, Philadelphia, Pennsylvania, 19140",
+    "ts": 1663933626000,
+    "date": "9/23/2022, 7:47:06 AM",
+    "ll": [
+      40.00195003114732,
+      -75.14009991434408
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCe2t7oTbM3r9tGnx4D.png"
+  },
+  {
+    "key": "-NCcrm8J1i8ecj7ctqCV",
+    "raw": "Overturned Vehicle in Olney at 5100-5132 N 5th St, Philadelphia, PA, 19120, USA",
+    "ts": 1663911953000,
+    "date": "9/23/2022, 1:45:53 AM",
+    "ll": [
+      40.02946,
+      -75.13205
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCcrm8J1i8ecj7ctqCV.png"
+  },
+  {
+    "key": "-NCpruwYYCqgSCdANKcZ",
+    "raw": "Report of Man Brandished Gun Following Vehicle Collision at 65th Ave & N 2nd St, Philadelphia, Pennsylvania, 19126",
+    "ts": 1664129937000,
+    "date": "9/25/2022, 2:18:57 PM",
+    "ll": [
+      40.0496000610523,
+      -75.12277988489846
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCpruwYYCqgSCdANKcZ.png"
+  },
+  {
+    "key": "-NCozzhG2mV7c6hTr615",
+    "raw": "Vehicle Collision at 1300 Robbins St, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664115276000,
+    "date": "9/25/2022, 10:14:36 AM",
+    "ll": [
+      40.03880898935665,
+      -75.08009202549238
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCozzhG2mV7c6hTr615.png"
+  },
+  {
+    "key": "-NCnwi5G0IwcZmjFg4Xh",
+    "raw": "Vehicle Collision at Castor Ave, Philadelphia, PA, 19124, USA",
+    "ts": 1664097640000,
+    "date": "9/25/2022, 5:20:40 AM",
+    "ll": [
+      40.01316,
+      -75.09733
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCnwi5G0IwcZmjFg4Xh.png"
+  },
+  {
+    "key": "-NCnZOhKnQ0q3q82hjlY",
+    "raw": "People Fighting Following Vehicle Collision at E Mt Pleasant Ave & Woolston Ave, Philadelphia, Pennsylvania, 19150",
+    "ts": 1664091265000,
+    "date": "9/25/2022, 3:34:25 AM",
+    "ll": [
+      40.07218002810711,
+      -75.17473988941626
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCnZOhKnQ0q3q82hjlY.png"
+  },
+  {
+    "key": "-NCmUywEK1-VrLN3s2_V",
+    "raw": "Vehicle Collision With Injuries at Aramingo Ave & Castor Ave, Philadelphia, Pennsylvania, 19134",
+    "ts": 1664073330000,
+    "date": "9/24/2022, 10:35:30 PM",
+    "ll": [
+      39.994690045711906,
+      -75.09455994474449
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCmUywEK1-VrLN3s2_V.png"
+  },
+  {
+    "key": "-NCly0AEZoqKZYDk87ao",
+    "raw": "Vehicle Collision at Unruh Ave & Bustleton Ave, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664064426000,
+    "date": "9/24/2022, 8:07:06 PM",
+    "ll": [
+      40.039220037888384,
+      -75.06677988686914
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCly0AEZoqKZYDk87ao.png"
+  },
+  {
+    "key": "-NCl2NZlpvAoO7aygtii",
+    "raw": "Multi-vehicle Collision With Person Trapped at 1009 W Cliveden St, Philadelphia, Pennsylvania, 19119",
+    "ts": 1664049114000,
+    "date": "9/24/2022, 3:51:54 PM",
+    "ll": [
+      40.03589401488932,
+      -75.19511998407316
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCl2NZlpvAoO7aygtii.png"
+  },
+  {
+    "key": "-NCkkt_E4PKpiwmPoBhr",
+    "raw": "Two-Vehicle Collision at McDonald's Parking Lot at Cottman Ave & Roosevelt Blvd, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664044419000,
+    "date": "9/24/2022, 2:33:39 PM",
+    "ll": [
+      40.044330023249756,
+      -75.05405992970525
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCkkt_E4PKpiwmPoBhr.png"
+  },
+  {
+    "key": "-NCkVyTtBf9YW2e4FZLj",
+    "raw": "Vehicle Collision on I-95 at I-95 S & Exit 23, Philadelphia, Pennsylvania, 19125",
+    "ts": 1664043241000,
+    "date": "9/24/2022, 2:14:01 PM",
+    "ll": [
+      39.97457004151053,
+      -75.11817989643579
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCkVyTtBf9YW2e4FZLj.png"
+  },
+  {
+    "key": "-NCkL3yq_48Ap_icYEL4",
+    "raw": "Vehicle Collision at 4640 Roosevelt Blvd, Philadelphia, Pennsylvania, 19124",
+    "ts": 1664037179000,
+    "date": "9/24/2022, 12:32:59 PM",
+    "ll": [
+      40.03115999979488,
+      -75.10014103497384
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCkL3yq_48Ap_icYEL4.png"
+  },
+  {
+    "key": "-NCkE02bVbJnl7fxzbaB",
+    "raw": "Vehicle Collision at 1122 Cobbs Creek Pkwy, Philadelphia, PA, 19143, USA",
+    "ts": 1664035328000,
+    "date": "9/24/2022, 12:02:08 PM",
+    "ll": [
+      39.9440965,
+      -75.2383932
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCkE02bVbJnl7fxzbaB.png"
+  },
+  {
+    "key": "-NCk5HGVLfYpIKqWV3Ga",
+    "raw": "Vehicle Collision Involving Carjacked Vehicle at 8424 Walker St, Philadelphia, Pennsylvania, 19136",
+    "ts": 1664033058000,
+    "date": "9/24/2022, 11:24:18 AM",
+    "ll": [
+      40.04318485058381,
+      -75.01805428102521
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCk5HGVLfYpIKqWV3Ga.png"
+  },
+  {
+    "key": "-NCjunAG3lnG1bXTcncz",
+    "raw": "Two-Vehicle Collision at Oxford Ave & Levick St, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664030039000,
+    "date": "9/24/2022, 10:33:59 AM",
+    "ll": [
+      40.045510027578814,
+      -75.08832992757127
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCjunAG3lnG1bXTcncz.png"
+  },
+  {
+    "key": "-NCheMkskH775Z5sQkTR",
+    "raw": "Vehicle Collision at Frankford Ave & Pennypack St, Philadelphia, Pennsylvania, 19136",
+    "ts": 1663992167000,
+    "date": "9/24/2022, 12:02:47 AM",
+    "ll": [
+      40.047470051817356,
+      -75.01400993904751
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NCheMkskH775Z5sQkTR.png"
+  },
+  {
+    "key": "-NChZ-y-s0pE-5j_iPt0",
+    "raw": "Vehicle Collision With Injuries at Devereaux Ave & Roosevelt Blvd, Philadelphia, Pennsylvania, 19149",
+    "ts": 1663991092000,
+    "date": "9/23/2022, 11:44:52 PM",
+    "ll": [
+      40.03388005310384,
+      -75.0743598933678
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NChZ-y-s0pE-5j_iPt0.png"
+  },
+  {
+    "key": "-NDAoAnVOTCJXHQsucJK",
+    "raw": "Vehicle Collision at N 34th St & W Girard Ave, Philadelphia, Pennsylvania, 19104",
+    "ts": 1664498095000,
+    "date": "9/29/2022, 8:34:55 PM",
+    "ll": [
+      39.97516004367506,
+      -75.19503993689783
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDAoAnVOTCJXHQsucJK.png"
+  },
+  {
+    "key": "-NDA4MDX4VeQt_isoJXy",
+    "raw": "Vehicle Collision With Injuries at Bleigh Ave & State Rd, Philadelphia, Pennsylvania, 19136",
+    "ts": 1664486634000,
+    "date": "9/29/2022, 5:23:54 PM",
+    "ll": [
+      40.02735004761598,
+      -75.0288199237682
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDA4MDX4VeQt_isoJXy.png"
+  },
+  {
+    "key": "-ND9oHybHJqupi44y0AE",
+    "raw": "Vehicle Collision With Injuries at A St & E Lehigh Ave, Philadelphia, Pennsylvania, 19134",
+    "ts": 1664482033000,
+    "date": "9/29/2022, 4:07:13 PM",
+    "ll": [
+      39.990670043039444,
+      -75.12894988764494
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND9oHybHJqupi44y0AE.png"
+  },
+  {
+    "key": "-ND9bdT8aimGHsmhcggR",
+    "raw": "Vehicle Collision at I-676 W & PA-611, Philadelphia, Pennsylvania, 19102",
+    "ts": 1664477992000,
+    "date": "9/29/2022, 2:59:52 PM",
+    "ll": [
+      39.957910045030474,
+      -75.16239988392331
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND9bdT8aimGHsmhcggR.png"
+  },
+  {
+    "key": "-ND8xaRgfaKv30ftjjj7",
+    "raw": "Vehicle Collision at N Juniper St & Commerce St, Philadelphia, Pennsylvania, 19107",
+    "ts": 1664467000000,
+    "date": "9/29/2022, 11:56:40 AM",
+    "ll": [
+      39.95291003023874,
+      -75.16247993109863
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND8xaRgfaKv30ftjjj7.png"
+  },
+  {
+    "key": "-ND8RIOMoF80AZtvg5jU",
+    "raw": "School Bus Involved in Vehicle Collision at 156 Green Ln, Philadelphia, Pennsylvania, 19127",
+    "ts": 1664460603000,
+    "date": "9/29/2022, 10:10:03 AM",
+    "ll": [
+      40.02837599256466,
+      -75.22536398620595
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND8RIOMoF80AZtvg5jU.png"
+  },
+  {
+    "key": "-ND6eyYsY3ixzi-zxLrQ",
+    "raw": "Vehicle Collision With Injuries at Roosevelt Blvd & Byberry Rd, Philadelphia, Pennsylvania, 19116",
+    "ts": 1664428534000,
+    "date": "9/29/2022, 1:15:34 AM",
+    "ll": [
+      40.106730023448705,
+      -74.99919995432683
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND6eyYsY3ixzi-zxLrQ.png"
+  },
+  {
+    "key": "-ND5yXYV4mNF9-8ad93O",
+    "raw": "Vehicle Collision at S 63rd St & Woodland Ave, Philadelphia, Pennsylvania, 19142",
+    "ts": 1664416884000,
+    "date": "9/28/2022, 10:01:24 PM",
+    "ll": [
+      39.9274200340395,
+      -75.23171989956485
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND5yXYV4mNF9-8ad93O.png"
+  },
+  {
+    "key": "-ND5Tgcg-KtwBWJ0Ox6h",
+    "raw": "Two-Vehicle Collision at Bustleton Ave & Philmont Ave, Philadelphia, Pennsylvania, 19116",
+    "ts": 1664408852000,
+    "date": "9/28/2022, 7:47:32 PM",
+    "ll": [
+      40.13176006271121,
+      -75.01218989259199
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND5Tgcg-KtwBWJ0Ox6h.png"
+  },
+  {
+    "key": "-ND5NIU-Acsmqh3wWA2v",
+    "raw": "Vehicle Collision at 900 S Broad St, Philadelphia, Pennsylvania, 19146",
+    "ts": 1664406861000,
+    "date": "9/28/2022, 7:14:21 PM",
+    "ll": [
+      39.939942546804446,
+      -75.16638787309152
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND5NIU-Acsmqh3wWA2v.png"
+  },
+  {
+    "key": "-ND4s8qfzFEfdsQuAPjz",
+    "raw": "Vehicle Collision at Silverwood St & Leverington Ave, Philadelphia, Pennsylvania, 19127",
+    "ts": 1664398433000,
+    "date": "9/28/2022, 4:53:53 PM",
+    "ll": [
+      40.031660022228806,
+      -75.22510993072069
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND4s8qfzFEfdsQuAPjz.png"
+  },
+  {
+    "key": "-ND4R1EslL6QHY6e7jIV",
+    "raw": "Vehicle Collision at N 21st St & Market St, Philadelphia, Pennsylvania, 19103",
+    "ts": 1664391062000,
+    "date": "9/28/2022, 2:51:02 PM",
+    "ll": [
+      39.95381003709221,
+      -75.17507994322808
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND4R1EslL6QHY6e7jIV.png"
+  },
+  {
+    "key": "-ND4DuF3sWWre0cj-ZIy",
+    "raw": "Two Women Injured, One Rescued From Overturned Vehicle Following Collision at 6200 Lawndale St, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664389251000,
+    "date": "9/28/2022, 2:20:51 PM",
+    "ll": [
+      40.04564004607638,
+      -75.09517656510634
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND4DuF3sWWre0cj-ZIy.png"
+  },
+  {
+    "key": "-ND3rjooe7j7EE-OgbPf",
+    "raw": "Overturned Vehicle Following Three-Vehicle Crash at Chestnut St & Schuylkill Ave, Philadelphia, Pennsylvania, 19104",
+    "ts": 1664381832000,
+    "date": "9/28/2022, 12:17:12 PM",
+    "ll": [
+      39.953090031609435,
+      -75.18183994813909
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND3rjooe7j7EE-OgbPf.png"
+  },
+  {
+    "key": "-ND3Z_HS4lQdNCrlNgsz",
+    "raw": "Officers Involved in Vehicle Collision at 1501 Arch St, Philadelphia, Pennsylvania, 19102",
+    "ts": 1664376526000,
+    "date": "9/28/2022, 10:48:46 AM",
+    "ll": [
+      39.95469401959731,
+      -75.16491477550555
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND3Z_HS4lQdNCrlNgsz.png"
+  },
+  {
+    "key": "-ND2lE6jFAVB7hZVMMnR",
+    "raw": "Two-Vehicle Collision on Roxborough at Ridge Ave & Walnut Ln, Philadelphia, Pennsylvania, 19128",
+    "ts": 1664363897000,
+    "date": "9/28/2022, 7:18:17 AM",
+    "ll": [
+      40.02697005403553,
+      -75.20943987891518
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND2lE6jFAVB7hZVMMnR.png"
+  },
+  {
+    "key": "-ND2XBN7yHWMN2y2Orhj",
+    "raw": "Vehicle Collision at 475 Mill Rd, Bensalem, Pennsylvania, 19020",
+    "ts": 1664359122000,
+    "date": "9/28/2022, 5:58:42 AM",
+    "ll": [
+      40.06139700303851,
+      -74.97798996743653
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND2XBN7yHWMN2y2Orhj.png"
+  },
+  {
+    "key": "-NDL3R45xZBFM9ECAPPM",
+    "raw": "Multi-Vehicle Collision at I-95 S & Cottman Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664670157000,
+    "date": "10/1/2022, 8:22:37 PM",
+    "ll": [
+      40.02445003484584,
+      -75.03080995522012
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDL3R45xZBFM9ECAPPM.png"
+  },
+  {
+    "key": "-NDKpdyUePkG1c947I4h",
+    "raw": "Vehicle Collision at N 59th St & Lancaster Ave, Philadelphia, Pennsylvania, 19151",
+    "ts": 1664666337000,
+    "date": "10/1/2022, 7:18:57 PM",
+    "ll": [
+      39.981940039425126,
+      -75.2390499577108
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDKpdyUePkG1c947I4h.png"
+  },
+  {
+    "key": "-NDKbT6_IuhS4fNvvW9u",
+    "raw": "Vehicle Collision at E Mt Pleasant Ave & Forrest Ave, Philadelphia, Pennsylvania, 19150",
+    "ts": 1664662546000,
+    "date": "10/1/2022, 6:15:46 PM",
+    "ll": [
+      40.07452004592611,
+      -75.1724599279335
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDKbT6_IuhS4fNvvW9u.png"
+  },
+  {
+    "key": "-NDJ3ighe1gtytq1Voom",
+    "raw": "Unfounded Report of Vehicle Collision With Injuries at St Vincent St & Algon Ave, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664636872000,
+    "date": "10/1/2022, 11:07:52 AM",
+    "ll": [
+      40.05336005708824,
+      -75.07510990606393
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDJ3ighe1gtytq1Voom.png"
+  },
+  {
+    "key": "-NDJ30PSv41QD7heJPxa",
+    "raw": "Large Fight After Vehicle Collision at Parkside Ave & Bryn Mawr Ave, Philadelphia, Pennsylvania, 19131",
+    "ts": 1664636425000,
+    "date": "10/1/2022, 11:00:25 AM",
+    "ll": [
+      39.987570038059516,
+      -75.22506994904255
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDJ30PSv41QD7heJPxa.png"
+  },
+  {
+    "key": "-NDIxsacx9v4uLaaH8zX",
+    "raw": "Two-Vehicle Collision at Roosevelt Blvd & Woodward St, Philadelphia, Pennsylvania, 19152",
+    "ts": 1664635199000,
+    "date": "10/1/2022, 10:39:59 AM",
+    "ll": [
+      40.07102005652666,
+      -75.0378199084838
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDIxsacx9v4uLaaH8zX.png"
+  },
+  {
+    "key": "-NDIjhij0eIhV0uwCRtC",
+    "raw": "People Fighting After Four-Vehicle Collision at Oakland St & Pratt St, Philadelphia, Pennsylvania, 19124",
+    "ts": 1664632669000,
+    "date": "10/1/2022, 9:57:49 AM",
+    "ll": [
+      40.02513005865046,
+      -75.08268991256259
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDIjhij0eIhV0uwCRtC.png"
+  },
+  {
+    "key": "-NDILMsz6docag2Mey_v",
+    "raw": "Vehicle Collision on I-676 at Exit 344, Philadelphia, Pennsylvania, 19104",
+    "ts": 1664624469000,
+    "date": "10/1/2022, 7:41:09 AM",
+    "ll": [
+      39.95681590192512,
+      -75.18021019711229
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDILMsz6docag2Mey_v.png"
+  },
+  {
+    "key": "-NDHGu_h7-RVIEsNAwsv",
+    "raw": "Overturned Vehicle Collision at N 3rd St & Poplar St, Philadelphia, Pennsylvania, 19123",
+    "ts": 1664606516000,
+    "date": "10/1/2022, 2:41:56 AM",
+    "ll": [
+      39.96495004741706,
+      -75.14254994464225
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDHGu_h7-RVIEsNAwsv.png"
+  },
+  {
+    "key": "-NDGXPj2bxcJvo06AVzv",
+    "raw": "Vehicle Collision With Vehicle, Barber Shop at Market St & N Yewdall St, Philadelphia, Pennsylvania, 19139",
+    "ts": 1664594062000,
+    "date": "9/30/2022, 11:14:22 PM",
+    "ll": [
+      39.96055005116415,
+      -75.22923994587234
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDGXPj2bxcJvo06AVzv.png"
+  },
+  {
+    "key": "-NDFkejxRO506ex2v5z8",
+    "raw": "Two-Vehicle Collision at Bustleton Ave & Grant Ave, Philadelphia, Pennsylvania, 19115",
+    "ts": 1664581306000,
+    "date": "9/30/2022, 7:41:46 PM",
+    "ll": [
+      40.085470038505946,
+      -75.03739989131569
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDFkejxRO506ex2v5z8.png"
+  },
+  {
+    "key": "-NDFY9w_UbacPAkj3wqo",
+    "raw": "Vehicle Collision at S 6th St & Spruce St, Philadelphia, Pennsylvania, 19106",
+    "ts": 1664577482000,
+    "date": "9/30/2022, 6:38:02 PM",
+    "ll": [
+      39.945380021792545,
+      -75.151589911036
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDFY9w_UbacPAkj3wqo.png"
+  },
+  {
+    "key": "-NDFWJFK-zUEzpZYMn32",
+    "raw": "Vehicle Collision at E Girard Ave & E Susquehanna Ave, Philadelphia, Pennsylvania, 19125",
+    "ts": 1664577005000,
+    "date": "9/30/2022, 6:30:05 PM",
+    "ll": [
+      39.97216003480003,
+      -75.12480989802853
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDFWJFK-zUEzpZYMn32.png"
+  },
+  {
+    "key": "-NDFNHuI2zFlwUnXLDYl",
+    "raw": "Vehicle Collision With Lane Restiction at I-676 W & N 22nd St, Philadelphia, Pennsylvania, 19103",
+    "ts": 1664574631000,
+    "date": "9/30/2022, 5:50:31 PM",
+    "ll": [
+      39.95959002988394,
+      -75.17545989489902
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDFNHuI2zFlwUnXLDYl.png"
+  },
+  {
+    "key": "-NDF3ymDK82pOhtqBSxa",
+    "raw": "Vehicle Collision at Bridge St & Tacony St, Philadelphia, Pennsylvania, 19137",
+    "ts": 1664569568000,
+    "date": "9/30/2022, 4:26:08 PM",
+    "ll": [
+      40.008600023579135,
+      -75.06892992885268
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDF3ymDK82pOhtqBSxa.png"
+  },
+  {
+    "key": "-NDEUVEVt8yQfCZ2kJzs",
+    "raw": "Vehicle Collision at 50 N 20th St, Philadelphia, Pennsylvania, 19103",
+    "ts": 1664559743000,
+    "date": "9/30/2022, 1:42:23 PM",
+    "ll": [
+      39.954560477027975,
+      -75.17310353859948
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDEUVEVt8yQfCZ2kJzs.png"
+  },
+  {
+    "key": "-NDETeYqzRoTGahAEADo",
+    "raw": "Two-Vehicle Collision at N Broad St & W Olney Ave, Philadelphia, Pennsylvania, 19141",
+    "ts": 1664559524000,
+    "date": "9/30/2022, 1:38:44 PM",
+    "ll": [
+      40.03909003457011,
+      -75.14468992834198
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDETeYqzRoTGahAEADo.png"
+  },
+  {
+    "key": "-NDEOtl2hi6f2kB7_vAB",
+    "raw": "Overturned Vehicle After Crash at 241 Powell Ln, Upper Darby, PA, 19082, USA",
+    "ts": 1664558275000,
+    "date": "9/30/2022, 1:17:55 PM",
+    "ll": [
+      39.9557726,
+      -75.2511809
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDEOtl2hi6f2kB7_vAB.png"
+  },
+  {
+    "key": "-NDENmMIbNdTU_RJqxIL",
+    "raw": "Vehicle Collision at Robbins St & Harbison Ave, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664557983000,
+    "date": "9/30/2022, 1:13:03 PM",
+    "ll": [
+      40.029450049637575,
+      -75.0628499477463
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDENmMIbNdTU_RJqxIL.png"
+  },
+  {
+    "key": "-NDEK5SKnlMcTK5xMOkv",
+    "raw": "Vehicle Collision With Injuries at S 70th St & Elmwood Ave, Philadelphia, Pennsylvania, 19142",
+    "ts": 1664557254000,
+    "date": "9/30/2022, 1:00:54 PM",
+    "ll": [
+      39.9172100377815,
+      -75.23743987792983
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDEK5SKnlMcTK5xMOkv.png"
+  },
+  {
+    "key": "-NDE2SibIu2bcTjJGrH7",
+    "raw": "Vehicle Collision With Injuries at State Rd & Princeton Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664552420000,
+    "date": "9/30/2022, 11:40:20 AM",
+    "ll": [
+      40.023960028786206,
+      -75.03535990372085
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDE2SibIu2bcTjJGrH7.png"
+  },
+  {
+    "key": "-NDDvMowkC0DC-GR4FYK",
+    "raw": "Hit-and-Run Collision at Cottman Ave & Loretto Ave, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664550272000,
+    "date": "9/30/2022, 11:04:32 AM",
+    "ll": [
+      40.052200043598276,
+      -75.06774992452364
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDDvMowkC0DC-GR4FYK.png"
+  },
+  {
+    "key": "-NDDkfEdBV3d7S3DeOkm",
+    "raw": "Multiple-Vehicle Collision on I-95 at I-95 N & Exit 13, Philadelphia, Pennsylvania, 19153",
+    "ts": 1664547959000,
+    "date": "9/30/2022, 10:25:59 AM",
+    "ll": [
+      39.880990032051216,
+      -75.2464099392511
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDDkfEdBV3d7S3DeOkm.png"
+  },
+  {
+    "key": "-NDDMPbfTSci2pxrySK7",
+    "raw": "Vehicle Collision With Injuries at W Bristol St & N Broad St, Philadelphia, Pennsylvania, 19140",
+    "ts": 1664541149000,
+    "date": "9/30/2022, 8:32:29 AM",
+    "ll": [
+      40.01851003152248,
+      -75.14915991348641
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDDMPbfTSci2pxrySK7.png"
+  },
+  {
+    "key": "-NDDBe3I1EL9adNSXpal",
+    "raw": "Multiple-Vehicle Collision on I-95 at I-95 N & Exit 27, Philadelphia, Pennsylvania, 19137",
+    "ts": 1664539245000,
+    "date": "9/30/2022, 8:00:45 AM",
+    "ll": [
+      39.99643004499211,
+      -75.08248992035281
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDDBe3I1EL9adNSXpal.png"
+  },
+  {
+    "key": "-NDAzNIytHWFjZVxf137",
+    "raw": "Hit-and-Run Vehicle Collision at 3508 Cottman Ave, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664500991000,
+    "date": "9/29/2022, 9:23:11 PM",
+    "ll": [
+      40.037355986441185,
+      -75.04243196688705
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDAzNIytHWFjZVxf137.png"
+  },
+  {
+    "key": "-NDAwy5EC26t4f7UthsG",
+    "raw": "Vehicle Collision at Woodhaven Rd & Evans St, Philadelphia, Pennsylvania, 19116",
+    "ts": 1664500359000,
+    "date": "9/29/2022, 9:12:39 PM",
+    "ll": [
+      40.111390026338114,
+      -75.00108990585483
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDAwy5EC26t4f7UthsG.png"
+  },
+  {
+    "key": "-NDQ610gAzLHzjKKCpFb",
+    "raw": "Vehicle Collision With Ramp Closure at I-95 N & E Girard Ave, Philadelphia, Pennsylvania, 19125",
+    "ts": 1664756031000,
+    "date": "10/2/2022, 8:13:51 PM",
+    "ll": [
+      39.973200061346034,
+      -75.11998988460749
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDQ610gAzLHzjKKCpFb.png"
+  },
+  {
+    "key": "-NDOxRQ2WVp2opcTo1-4",
+    "raw": "Vehicle Collision With Injuries at Mile 30 I-95 S, Philadelphia, Pennsylvania, 19136",
+    "ts": 1664735382000,
+    "date": "10/2/2022, 2:29:42 PM",
+    "ll": [
+      40.028140000080754,
+      -75.02399999416619
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDOxRQ2WVp2opcTo1-4.png"
+  },
+  {
+    "key": "-NDObnP5vMAtGv7Qvjg7",
+    "raw": "Vehicle Collision at Cottman Ave & Ryan Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664729691000,
+    "date": "10/2/2022, 12:54:51 PM",
+    "ll": [
+      40.0367942890814,
+      -75.04067494671892
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDObnP5vMAtGv7Qvjg7.png"
+  },
+  {
+    "key": "-NDNUf4nCEy4cEYNaecr",
+    "raw": "Overturned Vehicle Collision on I-95, Ramp Closed at Mile 32 I-95 N, Philadelphia, Pennsylvania, 19136",
+    "ts": 1664714231000,
+    "date": "10/2/2022, 8:37:11 AM",
+    "ll": [
+      40.047570006012705,
+      -74.99980001477515
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDNUf4nCEy4cEYNaecr.png"
+  },
+  {
+    "key": "-NDN9z2ZSYFERp467ZE9",
+    "raw": "Officer Injured in Vehicle Collision at N 22nd St & Pennsylvania Ave, Philadelphia, Pennsylvania, 19130",
+    "ts": 1664706690000,
+    "date": "10/2/2022, 6:31:30 AM",
+    "ll": [
+      39.96294002512607,
+      -75.1747199404867
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDN9z2ZSYFERp467ZE9.png"
+  },
+  {
+    "key": "-NDMma9ZLOPVlfbKkGce",
+    "raw": "Man Injured in Overturned Vehicle Collision at Harbison Ave & Torresdale Ave, Philadelphia, Pennsylvania, 19124",
+    "ts": 1664700111000,
+    "date": "10/2/2022, 4:41:51 AM",
+    "ll": [
+      40.01359002199658,
+      -75.0686399150028
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDMma9ZLOPVlfbKkGce.png"
+  },
+  {
+    "key": "-NDMQvXz5jr-47QydMea",
+    "raw": "Overturned Vehicle Collision at 5701 Harbison Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664696466000,
+    "date": "10/2/2022, 3:41:06 AM",
+    "ll": [
+      40.01753275492277,
+      -75.06501657121586
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDMQvXz5jr-47QydMea.png"
+  },
+  {
+    "key": "-NDLdmOWyELfIaORhOSg",
+    "raw": "Unfounded Report of Vehicle Collision at N 5th St & Arch St, Philadelphia, Pennsylvania, 19106",
+    "ts": 1664681471000,
+    "date": "10/1/2022, 11:31:11 PM",
+    "ll": [
+      39.952580034710735,
+      -75.1484899479656
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDLdmOWyELfIaORhOSg.png"
+  },
+  {
+    "key": "-ND_XAjbv8-EcmxQ2TwA",
+    "raw": "Vehicle Collision With Lane Restriction at I-95 S & Cottman Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664929545000,
+    "date": "10/4/2022, 8:25:45 PM",
+    "ll": [
+      40.02445003484584,
+      -75.03080995522012
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND_XAjbv8-EcmxQ2TwA.png"
+  },
+  {
+    "key": "-ND_O6DvDT9jpMxQqVO6",
+    "raw": "Vehicle Collision at 3900 City Ave, Philadelphia, Pennsylvania, 19131",
+    "ts": 1664927167000,
+    "date": "10/4/2022, 7:46:07 PM",
+    "ll": [
+      40.008182981986636,
+      -75.20959603377133
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND_O6DvDT9jpMxQqVO6.png"
+  },
+  {
+    "key": "-NDZvKylTO1TkPjcD75q",
+    "raw": "Two-Vehicle Collision at Ridge Ave & Cinnaminson St, Philadelphia, Pennsylvania, 19128",
+    "ts": 1664919363000,
+    "date": "10/4/2022, 5:36:03 PM",
+    "ll": [
+      40.04022004084672,
+      -75.22435991802456
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDZvKylTO1TkPjcD75q.png"
+  },
+  {
+    "key": "-NDZ4Dg2YZrVpNsTb5rZ",
+    "raw": "Vehicle Collision at 2-82 N 63rd St, Philadelphia, PA, 19139, USA",
+    "ts": 1664905177000,
+    "date": "10/4/2022, 1:39:37 PM",
+    "ll": [
+      39.9632,
+      -75.24666
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDZ4Dg2YZrVpNsTb5rZ.png"
+  },
+  {
+    "key": "-NDYj9ZlW5ZebfxOfFA4",
+    "raw": "Vehicle Collision on I-95 at I-95 S & Exit 26, Philadelphia, Pennsylvania, 19137",
+    "ts": 1664901769000,
+    "date": "10/4/2022, 12:42:49 PM",
+    "ll": [
+      40.00527006108558,
+      -75.0757499481904
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDYj9ZlW5ZebfxOfFA4.png"
+  },
+  {
+    "key": "-NDYE7k-7PDl8kW3MtcC",
+    "raw": "Multi-Vehicle Collision on I-95 at I-95 N & Exit 32, Philadelphia, Pennsylvania, 19136",
+    "ts": 1664892638000,
+    "date": "10/4/2022, 10:10:38 AM",
+    "ll": [
+      40.04373004662045,
+      -75.00269990181675
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDYE7k-7PDl8kW3MtcC.png"
+  },
+  {
+    "key": "-NDXC4W6kwsGR8eicUmw",
+    "raw": "Overturned Vehicle Collision at Byberry Rd & Worthington Rd, Philadelphia, Pennsylvania, 19116",
+    "ts": 1664874878000,
+    "date": "10/4/2022, 5:14:38 AM",
+    "ll": [
+      40.11857004841724,
+      -75.00698992750002
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDXC4W6kwsGR8eicUmw.png"
+  },
+  {
+    "key": "-NDVeKjqos7CvwmmvJWX",
+    "raw": "Multi-Vehicle Collision at I-95 S & Exit 20, Philadelphia, Pennsylvania, 19106",
+    "ts": 1664848992000,
+    "date": "10/3/2022, 10:03:12 PM",
+    "ll": [
+      39.94240004566609,
+      -75.14324991737644
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDVeKjqos7CvwmmvJWX.png"
+  },
+  {
+    "key": "-NDVOiA2mPO5xnx485FW",
+    "raw": "Vehicle Collision at Red Lion Rd & Verree Rd, Philadelphia, Pennsylvania, 19115",
+    "ts": 1664844492000,
+    "date": "10/3/2022, 8:48:12 PM",
+    "ll": [
+      40.105110053021974,
+      -75.03297994613321
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDVOiA2mPO5xnx485FW.png"
+  },
+  {
+    "key": "-NDV71H5cqnzPpu5g8jR",
+    "raw": "Multi-Vehicle Collision at I-95 S & Exit 32, Philadelphia, Pennsylvania, 19114",
+    "ts": 1664843351000,
+    "date": "10/3/2022, 8:29:11 PM",
+    "ll": [
+      40.04902003335255,
+      -74.99762994004303
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDV71H5cqnzPpu5g8jR.png"
+  },
+  {
+    "key": "-NDUXU6aMDfWvDGlLtRy",
+    "raw": "Vehicle Collision With Injuries at Ridge Ave & Acorn St, Philadelphia, Pennsylvania, 19128",
+    "ts": 1664829027000,
+    "date": "10/3/2022, 4:30:27 PM",
+    "ll": [
+      40.03753003666063,
+      -75.22134989277522
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDUXU6aMDfWvDGlLtRy.png"
+  },
+  {
+    "key": "-NDUNbzh2NkGL7KEKCe6",
+    "raw": "Vehicle Collision at 1699 Spring Garden St, Philadelphia, Pennsylvania, 19130",
+    "ts": 1664826376000,
+    "date": "10/3/2022, 3:46:16 PM",
+    "ll": [
+      39.96316598126323,
+      -75.1663013141537
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDUNbzh2NkGL7KEKCe6.png"
+  },
+  {
+    "key": "-NDTVTgJCGzLPALXXdKf",
+    "raw": "Vehicle Collision at Roosevelt Blvd & Bustleton Ave, Philadelphia, Pennsylvania, 19149",
+    "ts": 1664811658000,
+    "date": "10/3/2022, 11:40:58 AM",
+    "ll": [
+      40.03460005858662,
+      -75.07122992308402
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDTVTgJCGzLPALXXdKf.png"
+  },
+  {
+    "key": "-NDTL0F2HrHXjv4p5_qW",
+    "raw": "Vehicle Collision at 700 N 27th St, Philadelphia, Pennsylvania, 19130",
+    "ts": 1664808915000,
+    "date": "10/3/2022, 10:55:15 AM",
+    "ll": [
+      39.96934522844582,
+      -75.18156271554838
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDTL0F2HrHXjv4p5_qW.png"
+  },
+  {
+    "key": "-NDSr7nswkdWI0PoXmVu",
+    "raw": "Vehicle Collision at I-76 W, Philadelphia, PA, 19146, USA",
+    "ts": 1664800820000,
+    "date": "10/3/2022, 8:40:20 AM",
+    "ll": [
+      39.93678,
+      -75.19921
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDSr7nswkdWI0PoXmVu.png"
+  },
+  {
+    "key": "-NDSW_9ZTcDnzsSr_C1C",
+    "raw": "Vehicle Collision on I-95 at I-95 S & Exit 19, Philadelphia, Pennsylvania, 19148",
+    "ts": 1664798093000,
+    "date": "10/3/2022, 7:54:53 AM",
+    "ll": [
+      39.913100055378436,
+      -75.14852992964374
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDSW_9ZTcDnzsSr_C1C.png"
+  },
+  {
+    "key": "-NDSUDkXHNB6eZip54MK",
+    "raw": "Vehicle Collision at Cottman Ave & Loretto Ave, Philadelphia, Pennsylvania, 19111",
+    "ts": 1664794694000,
+    "date": "10/3/2022, 6:58:14 AM",
+    "ll": [
+      40.052200043598276,
+      -75.06774992452364
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDSUDkXHNB6eZip54MK.png"
+  },
+  {
+    "key": "-NDQixgTDqnH6N5Ncuiy",
+    "raw": "Vehicle Collision, People Fighting at N 25th St & Edgley St, Philadelphia, Pennsylvania, 19121",
+    "ts": 1664765786000,
+    "date": "10/2/2022, 10:56:26 PM",
+    "ll": [
+      39.98763899541994,
+      -75.17412954359614
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDQixgTDqnH6N5Ncuiy.png"
+  },
+  {
+    "key": "-ND_mBGP1D9YzOgK4pja",
+    "raw": "Person Struck by Vehicle at N 52nd St & Haverford Ave, Philadelphia, Pennsylvania, 19139",
+    "ts": 1664933741000,
+    "date": "10/4/2022, 9:35:41 PM",
+    "ll": [
+      39.964970038256126,
+      -75.22462989912584
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND_mBGP1D9YzOgK4pja.png"
+  },
+  {
+    "key": "-ND_O20RtyC03jD2eHb8",
+    "raw": "Two Juveniles Struck by Vehicle at Magee Ave & Frankford Ave, Philadelphia, Pennsylvania, 19135",
+    "ts": 1664927150000,
+    "date": "10/4/2022, 7:45:50 PM",
+    "ll": [
+      40.03067003564473,
+      -75.05482989133095
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-ND_O20RtyC03jD2eHb8.png"
+  },
+  {
+    "key": "-NDUlkEel6G6stnUlLQF",
+    "raw": "Pedestrian Struck by Vehicle at Ridge Ave & Fairmount Ave, Philadelphia, Pennsylvania, 19130",
+    "ts": 1664833252000,
+    "date": "10/3/2022, 5:40:52 PM",
+    "ll": [
+      39.96707004027769,
+      -75.16090991681484
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDUlkEel6G6stnUlLQF.png"
+  },
+  {
+    "key": "-NDUIPLqtbLoXPm3z-eu",
+    "raw": "Pedestrian Struck by Vehicle at 1200 E Hunting Park Ave, Philadelphia, Pennsylvania, 19124",
+    "ts": 1664825009000,
+    "date": "10/3/2022, 3:23:29 PM",
+    "ll": [
+      40.01079801004883,
+      -75.1040330040753
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDUIPLqtbLoXPm3z-eu.png"
+  },
+  {
+    "key": "-NDeZiGvq_42MudYJPyn",
+    "raw": "Vehicle Collision at W Ritner St & S 8th St, Philadelphia, Pennsylvania, 19148",
+    "ts": 1665014097000,
+    "date": "10/5/2022, 7:54:57 PM",
+    "ll": [
+      39.9193400051069,
+      -75.16054002342771
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDeZiGvq_42MudYJPyn.png"
+  },
+  {
+    "key": "-NDeIe98rWATygkbUHCw",
+    "raw": "Vehicle Collision at Ridge Ave & Lincoln Dr, Philadelphia, Pennsylvania, 19129",
+    "ts": 1665009623000,
+    "date": "10/5/2022, 6:40:23 PM",
+    "ll": [
+      40.01475003548654,
+      -75.20614989809978
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDeIe98rWATygkbUHCw.png"
+  },
+  {
+    "key": "-NDdj06vKYU8wpqIZKwz",
+    "raw": "Overturned Vehicle With Man Trapped at 1611 Frankford Ave, Philadelphia, Pennsylvania, 19125",
+    "ts": 1665000586000,
+    "date": "10/5/2022, 4:09:46 PM",
+    "ll": [
+      39.97430299407537,
+      -75.13305702020091
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDdj06vKYU8wpqIZKwz.png"
+  },
+  {
+    "key": "-NDdMnf_Q4a8_TZn0T5H",
+    "raw": "Person Injured Following Three-Vehicle Collision at 3642 S 26th St, Philadelphia, Pennsylvania, 19145",
+    "ts": 1664994937000,
+    "date": "10/5/2022, 2:35:37 PM",
+    "ll": [
+      39.90418641034694,
+      -75.19357587860402
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDdMnf_Q4a8_TZn0T5H.png"
+  },
+  {
+    "key": "-NDdIwiifEAEJvX-MruM",
+    "raw": "Man Injured Following Two-Vehicle Collision at N 57th St & Media St, Philadelphia, Pennsylvania, 19131",
+    "ts": 1664994160000,
+    "date": "10/5/2022, 2:22:40 PM",
+    "ll": [
+      39.974900037038566,
+      -75.23501993866405
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDdIwiifEAEJvX-MruM.png"
+  },
+  {
+    "key": "-NDdF5e6-i2_HvFEe6rc",
+    "raw": "Multi-Vehicle Collision at S 20th St & W Oregon Ave, Philadelphia, Pennsylvania, 19145",
+    "ts": 1664992318000,
+    "date": "10/5/2022, 1:51:58 PM",
+    "ll": [
+      39.91800003215579,
+      -75.18086991048459
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDdF5e6-i2_HvFEe6rc.png"
+  },
+  {
+    "key": "-NDcKk-5E6_5iGoQSziW",
+    "raw": "Vehicle Collision at N 63rd St & Vine St, Philadelphia, Pennsylvania, 19139",
+    "ts": 1664977099000,
+    "date": "10/5/2022, 9:38:19 AM",
+    "ll": [
+      39.96733004691421,
+      -75.24577995540844
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDcKk-5E6_5iGoQSziW.png"
+  },
+  {
+    "key": "-NDjw-DMGathkGdXSld5",
+    "raw": "Two-Vehicle Collision at S 70th St & Essington Ave, Philadelphia, Pennsylvania, 19153",
+    "ts": 1665104429000,
+    "date": "10/6/2022, 9:00:29 PM",
+    "ll": [
+      39.902519998095244,
+      -75.224859982368
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDjw-DMGathkGdXSld5.png"
+  },
+  {
+    "key": "-NDiiPkQPrk-1GluFIrk",
+    "raw": "Two-Vehicle Collision at 2600 W Oakdale St, Philadelphia, Pennsylvania, 19132",
+    "ts": 1665084051000,
+    "date": "10/6/2022, 3:20:51 PM",
+    "ll": [
+      39.995944984255345,
+      -75.17421803212456
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDiiPkQPrk-1GluFIrk.png"
+  },
+  {
+    "key": "-NDheVVNJUepXyb_OCL1",
+    "raw": "Vehicle Collision at 600 Devereaux Ave, Philadelphia, Pennsylvania, 19111",
+    "ts": 1665065945000,
+    "date": "10/6/2022, 10:19:05 AM",
+    "ll": [
+      40.04571500702096,
+      -75.09597900095208
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDheVVNJUepXyb_OCL1.png"
+  },
+  {
+    "key": "-NDhYTg6OtZp1rCXurQp",
+    "raw": "Vehicle Collision at 1830 S 24th St, Philadelphia, Pennsylvania, 19145",
+    "ts": 1665064102000,
+    "date": "10/6/2022, 9:48:22 AM",
+    "ll": [
+      39.92950398471649,
+      -75.18555396943611
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDhYTg6OtZp1rCXurQp.png"
+  },
+  {
+    "key": "-NDhXpkjE9tDjGxcrX0R",
+    "raw": "Vehicle Collision at Main St & Leverington Ave, Philadelphia, Pennsylvania, 19127",
+    "ts": 1665063935000,
+    "date": "10/6/2022, 9:45:35 AM",
+    "ll": [
+      40.029120012200025,
+      -75.23036999405845
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDhXpkjE9tDjGxcrX0R.png"
+  },
+  {
+    "key": "-NDh7tg4MsTJq8WgKKOr",
+    "raw": "Vehicle Collision at Roosevelt Blvd & Goodnaw St, Philadelphia, Pennsylvania, 19114",
+    "ts": 1665057135000,
+    "date": "10/6/2022, 7:52:15 AM",
+    "ll": [
+      40.07647998634562,
+      -75.03255003831934
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDh7tg4MsTJq8WgKKOr.png"
+  },
+  {
+    "key": "-NDfoR7wp1c2NCoZGK8z",
+    "raw": "Vehicle Collision With Injuries at S 10th St & W Shunk St, Philadelphia, Pennsylvania, 19148",
+    "ts": 1665034994000,
+    "date": "10/6/2022, 1:43:14 AM",
+    "ll": [
+      39.917259993924404,
+      -75.16422001419785
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDfoR7wp1c2NCoZGK8z.png"
+  },
+  {
+    "key": "-NDfEQuPyKHzkYPuf4GE",
+    "raw": "Woman Injured in Five-Vehicle Collision at I-95 N & E Girard Ave, Philadelphia, Pennsylvania, 19125",
+    "ts": 1665026524000,
+    "date": "10/5/2022, 11:22:04 PM",
+    "ll": [
+      39.97320001943652,
+      -75.11998996842652
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDfEQuPyKHzkYPuf4GE.png"
+  },
+  {
+    "key": "-NDop43JwavS6_8RQsZ0",
+    "raw": "Vehicle Collision at W George St & N Bodine St, Philadelphia, Pennsylvania, 19123",
+    "ts": 1665186156000,
+    "date": "10/7/2022, 7:42:36 PM",
+    "ll": [
+      39.96767001690699,
+      -75.14144998748854
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDop43JwavS6_8RQsZ0.png"
+  },
+  {
+    "key": "-NDoJCfJVMY6ajOE2ep3",
+    "raw": "Two-Vehicle Collision With Injuries at N 52nd St & Haverford Ave, Philadelphia, Pennsylvania, 19139",
+    "ts": 1665177967000,
+    "date": "10/7/2022, 5:26:07 PM",
+    "ll": [
+      39.96496999634661,
+      -75.22462998294488
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDoJCfJVMY6ajOE2ep3.png"
+  },
+  {
+    "key": "-NDnngD4w8gjDyol9Co2",
+    "raw": "Vehicle Collision With Injuries at Dr Martin Luther King Jr Dr, Philadelphia, PA, 19104, USA",
+    "ts": 1665169015000,
+    "date": "10/7/2022, 2:56:55 PM",
+    "ll": [
+      39.96442166103784,
+      -75.18341351998326
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDnngD4w8gjDyol9Co2.png"
+  },
+  {
+    "key": "-NDnmrhAM-rcF9O2HBjX",
+    "raw": "Two-Vehicle Collision Involving Tractor-Trailer at Roosevelt Blvd & Grant Ave, Philadelphia, Pennsylvania, 19114",
+    "ts": 1665168800000,
+    "date": "10/7/2022, 2:53:20 PM",
+    "ll": [
+      40.080679990388774,
+      -75.02846997931063
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDnmrhAM-rcF9O2HBjX.png"
+  },
+  {
+    "key": "-NDnatoerx9d2nxmYzia",
+    "raw": "Vehicle Collision on I-676 at I-676 W & N 22nd St, Philadelphia, Pennsylvania, 19103",
+    "ts": 1665165674000,
+    "date": "10/7/2022, 2:01:14 PM",
+    "ll": [
+      39.959589987974425,
+      -75.17545997871805
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDnatoerx9d2nxmYzia.png"
+  },
+  {
+    "key": "-NDmyslzPUZ87X4bAW5W",
+    "raw": "Vehicle Collision at Buttonwood St & N 15th St, Philadelphia, Pennsylvania, 19130",
+    "ts": 1665155173000,
+    "date": "10/7/2022, 11:06:13 AM",
+    "ll": [
+      39.961910014954356,
+      -75.16324997654336
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDmyslzPUZ87X4bAW5W.png"
+  },
+  {
+    "key": "-NDmuTWPjPFOa7-i1jtC",
+    "raw": "Vehicle Collision at S 68th St & Chester Ave, Philadelphia, Pennsylvania, 19142",
+    "ts": 1665154017000,
+    "date": "10/7/2022, 10:46:57 AM",
+    "ll": [
+      39.92603999559117,
+      -75.24234999681
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDmuTWPjPFOa7-i1jtC.png"
+  },
+  {
+    "key": "-NDmXlzTZdGQ7Wj1L4Ca",
+    "raw": "Vehicle Collision in I-76 at I-76 E & Exit 346B, Philadelphia, Pennsylvania, 19104",
+    "ts": 1665148173000,
+    "date": "10/7/2022, 9:09:33 AM",
+    "ll": [
+      39.94353998449796,
+      -75.19261002316726
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDmXlzTZdGQ7Wj1L4Ca.png"
+  },
+  {
+    "key": "-NDoJCfJVMY6ajOE2ep3",
+    "raw": "Two-Vehicle Collision With Injuries at N 52nd St & Haverford Ave, Philadelphia, Pennsylvania, 19139",
+    "ts": 1665177967000,
+    "date": "10/7/2022, 5:26:07 PM",
+    "ll": [
+      39.96496999634661,
+      -75.22462998294488
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDoJCfJVMY6ajOE2ep3.png"
+  },
+  {
+    "key": "-NDmIGvd2l2klhiYeLKl",
+    "raw": "Girl Suffered Minor Injuries After Being Struck by Vehicle in Millbourne at S 62nd St & Chestnut St, Philadelphia, Pennsylvania, 19139",
+    "ts": 1665148679000,
+    "date": "10/7/2022, 9:17:59 AM",
+    "ll": [
+      39.96094999367415,
+      -75.24503002653132
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDmIGvd2l2klhiYeLKl.png"
+  },
+  {
+    "key": "-NDtQ46fohK2-1bu7uFW",
+    "raw": "Vehicle Collision With Ramp Restriction at I-95 S & PA-291 W, Philadelphia, Pennsylvania, 19113",
+    "ts": 1665263619000,
+    "date": "10/8/2022, 5:13:39 PM",
+    "ll": [
+      39.876290005574134,
+      -75.26164002495894
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDtQ46fohK2-1bu7uFW.png"
+  },
+  {
+    "key": "-NDsv_aL51OVT6lpiQvO",
+    "raw": "Vehicle Collision With Injuries at Castor Ave & Tyson Ave, Philadelphia, Pennsylvania, 19149",
+    "ts": 1665254971000,
+    "date": "10/8/2022, 2:49:31 PM",
+    "ll": [
+      40.04685000052996,
+      -75.07031000921052
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDsv_aL51OVT6lpiQvO.png"
+  },
+  {
+    "key": "-NDsQsOYdwYwObLRybgC",
+    "raw": "Vehicle Collision at Montgomery Dr & Dr Martin Luther King Jr Dr, Philadelphia, Pennsylvania, 19131",
+    "ts": 1665246660000,
+    "date": "10/8/2022, 12:31:00 PM",
+    "ll": [
+      39.98648001346106,
+      -75.20512001365661
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDsQsOYdwYwObLRybgC.png"
+  },
+  {
+    "key": "-NDqoNu67PkvNIAkDG4G",
+    "raw": "Man Injured in Hit-and-Run Collision at F St & Roosevelt Blvd, Philadelphia, Pennsylvania, 19124",
+    "ts": 1665220514000,
+    "date": "10/8/2022, 5:15:14 AM",
+    "ll": [
+      40.02817998175891,
+      -75.11003997880502
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDqoNu67PkvNIAkDG4G.png"
+  },
+  {
+    "key": "-NDq7aTXfFD7hLqa4NOY",
+    "raw": "Vehicle Collision at Washington Ave & S 10th St, Philadelphia, Pennsylvania, 19147",
+    "ts": 1665208051000,
+    "date": "10/8/2022, 1:47:31 AM",
+    "ll": [
+      39.93678999596125,
+      -75.15993996297938
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDq7aTXfFD7hLqa4NOY.png"
+  },
+  {
+    "key": "-NDpW8jYoU44cabBYwdc",
+    "raw": "Report of Scooter Taken at Gunpoint at 1933 E Albert St, Philadelphia, Pennsylvania, 19125",
+    "ts": 1665197710000,
+    "date": "10/7/2022, 10:55:10 PM",
+    "ll": [
+      39.987653982819836,
+      -75.12476396519912
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDpW8jYoU44cabBYwdc.png"
+  },
+  {
+    "key": "-NDzKp4_-RkPbiBBPzxm",
+    "raw": "Vehicle Collision at 1500 E Upsal St, Philadelphia, Pennsylvania, 19150",
+    "ts": 1665362514000,
+    "date": "10/9/2022, 8:41:54 PM",
+    "ll": [
+      40.07178605363686,
+      -75.16075436996896
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDzKp4_-RkPbiBBPzxm.png",
+    "updates": {
+      "-NDzKp4rqejRlF9czW9O": {
+        "text": "Police have received a 911 report of a vehicle collision.",
+        "ts": 1665362518000,
+        "type": "TEXT",
+        "displayLocation": "1500 E Upsal St"
+      },
+      "-NDzKpzkrPeWXSJNXxav": {
+        "text": "Incident reported at 1500 E Upsal St.",
+        "ts": 1665362517999,
+        "type": "ROOT",
+        "displayLocation": "1500 E Upsal St"
+      }
+    }
+  },
+  {
+    "key": "-NDzHn1q7MQJ0lkcHnpV",
+    "raw": "Vehicle Collision With Injuries at Ogontz Ave & Nedro Ave, Philadelphia, Pennsylvania, 19141",
+    "ts": 1665361719000,
+    "date": "10/9/2022, 8:28:39 PM",
+    "ll": [
+      40.04364999944514,
+      -75.14978000668333
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDzHn1q7MQJ0lkcHnpV.png",
+    "updates": {
+      "-NDzHn28HLFDNnRAChvS": {
+        "text": "Firefighters have received a 911 report of a vehicle collision with injuries.",
+        "ts": 1665361724000,
+        "type": "TEXT",
+        "displayLocation": "Ogontz Ave & Nedro Ave"
+      },
+      "-NDzHo8V7_Dhzth5XQ05": {
+        "text": "Incident reported at Ogontz Ave & Nedro Ave.",
+        "ts": 1665361723999,
+        "type": "ROOT",
+        "displayLocation": "Ogontz Ave & Nedro Ave"
+      }
+    }
+  },
+  {
+    "key": "-NDzB8lMssfxR2rDIINj",
+    "raw": "Multiple Vehicle Collision With Lane Restriction at Mile 333 I-76 E, Gladwyne, Pennsylvania, 19035",
+    "ts": 1665359977000,
+    "date": "10/9/2022, 7:59:37 PM",
+    "ll": [
+      40.06938998590661,
+      -75.29448996078898
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDzB8lMssfxR2rDIINj.png",
+    "updates": {
+      "-NDzB8ld7a0jBsmzvdP4": {
+        "text": "According to the official Twitter account of the Pennsylvania Department of Transportation, firefighters were responding to a multiple vehicle collision with a lane restriction.",
+        "ts": 1665359982000,
+        "type": "TEXT",
+        "displayLocation": "Mile 333 I-76 E"
+      },
+      "-NDzB9qkyzZ89aRjyMV3": {
+        "text": "Incident reported at Mile 333 I-76 E.",
+        "ts": 1665359981999,
+        "type": "ROOT",
+        "displayLocation": "Mile 333 I-76 E"
+      }
+    }
+  },
+  {
+    "key": "-NDyX2tghVcnYM_dT3XL",
+    "raw": "Three Injured in Vehicle Collision at S 63rd St & Woodland Ave, Philadelphia, Pennsylvania, 19142",
+    "ts": 1665350808000,
+    "date": "10/9/2022, 5:26:48 PM",
+    "ll": [
+      39.927419992129984,
+      -75.23171998338388
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDyX2tghVcnYM_dT3XL.png",
+    "updates": {
+      "-NDyX2mNQ5WgRKlKlwm3": {
+        "text": "Incident reported at S 63rd St & Wheeler St.",
+        "ts": 1665348942999,
+        "type": "ROOT",
+        "displayLocation": "S 63rd St & Wheeler St"
+      },
+      "-NDyX2ty2ccSSDDBIzPO": {
+        "text": "Police have received a 911 report of a vehicle collision. EMS personnel are en route.",
+        "ts": 1665348943000,
+        "type": "TEXT",
+        "displayLocation": "S 63rd St & Wheeler St"
+      },
+      "-NDyXdNczlzAnFa7EtOV": {
+        "text": "The address reported for this incident has changed to S 63rd St & Woodland Ave.",
+        "ts": 1665349096999,
+        "type": "LOCATION_CHANGE",
+        "displayLocation": "S 63rd St & Woodland Ave"
+      },
+      "-NDyXdS0yRdMDwDd9Dn4": {
+        "text": "Officers on the scene have advised that traffic in the area will be blocked. They have advised that two officers and one civilian have been injured. Additional medics have been requested.",
+        "ts": 1665349097000,
+        "type": "TEXT",
+        "displayLocation": "S 63rd St & Woodland Ave"
+      },
+      "-NDyagsCAHPBaLTuEi6O": {
+        "text": "Officers advised that the injured police have been transported to the hospital.",
+        "ts": 1665350160000,
+        "type": "TEXT",
+        "displayLocation": ""
+      },
+      "-NDydAJmYTHcLsejUr5j": {
+        "text": "Officers have advised that medics have transported one civilian to the hospital.",
+        "ts": 1665350809000,
+        "type": "TEXT",
+        "displayLocation": ""
+      }
+    }
+  },
+  {
+    "key": "-NDyWHYYPlEZqf7ZTkCD",
+    "raw": "Two-Vehicle Collision at Adams Ave & E Roosevelt Blvd, Philadelphia, Pennsylvania, 19124",
+    "ts": 1665348741000,
+    "date": "10/9/2022, 4:52:21 PM",
+    "ll": [
+      40.029919981039086,
+      -75.10310001443284
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDyWHYYPlEZqf7ZTkCD.png",
+    "updates": {
+      "-NDyWHT7nGHBfAg4jB0u": {
+        "text": "Incident reported at Adams Ave & E Roosevelt Blvd.",
+        "ts": 1665348740999,
+        "type": "ROOT",
+        "displayLocation": "Adams Ave & E Roosevelt Blvd"
+      },
+      "-NDyWHYpXF7amxSm6fwj": {
+        "text": "Police have received a 911 report of a two-vehicle collision.",
+        "ts": 1665348741000,
+        "type": "TEXT",
+        "displayLocation": "Adams Ave & E Roosevelt Blvd"
+      }
+    }
+  },
+  {
+    "key": "-NDwLYL0OEIzwP9y0N87",
+    "raw": "Vehicle Collision at 2800-2866 S 10th St, Philadelphia, PA, 19148, USA",
+    "ts": 1665312372000,
+    "date": "10/9/2022, 6:46:12 AM",
+    "ll": [
+      39.9143767,
+      -75.1648768
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDwLYL0OEIzwP9y0N87.png",
+    "updates": {
+      "-NDwLYJVhzx8JWB_5gih": {
+        "text": "Incident reported at 2812 S 10th St.",
+        "ts": 1665312371999,
+        "type": "ROOT",
+        "displayLocation": "2812 S 10th St"
+      },
+      "-NDwLYLJNEMxH2P4B3wP": {
+        "text": "Citizen user video shows a vehicle collision.",
+        "ts": 1665312372000,
+        "type": "TEXT",
+        "displayLocation": "2812 S 10th St"
+      }
+    }
+  },
+  {
+    "key": "-NDvjf7sEsqNtjLgCXpW",
+    "raw": "Two People Injured in Overturned Vehicle Collision at N 5th St & W Roosevelt Blvd, Philadelphia, Pennsylvania, 19120",
+    "ts": 1665303155000,
+    "date": "10/9/2022, 4:12:35 AM",
+    "ll": [
+      40.02352002077899,
+      -75.1333600260007
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDvjf7sEsqNtjLgCXpW.png",
+    "updates": {
+      "-NDvjemsxM4zjTH-RvuN": {
+        "text": "Incident reported at N 5th St & W Roosevelt Blvd.",
+        "ts": 1665302178999,
+        "type": "ROOT",
+        "displayLocation": "N 5th St & W Roosevelt Blvd"
+      },
+      "-NDvjf88h3cLP8ePJ3Fy": {
+        "text": "Police received a 911 report of an overturned vehicle following a two-vehicle collision. Officers advised EMS was en route.",
+        "ts": 1665302179000,
+        "type": "TEXT",
+        "displayLocation": "N 5th St & W Roosevelt Blvd"
+      },
+      "-NDvkuEPzH3Z_xTQpJ-w": {
+        "text": "Officers at the scene confirmed one vehicle collision. Police reported firefighters were blocking traffic.",
+        "ts": 1665302503000,
+        "type": "TEXT",
+        "displayLocation": ""
+      },
+      "-NDvmpjAe5xR9mBPTrSp": {
+        "text": "Police updated that one vehicle overturned after a hit-and-run collision. Officers advised medics were transporting two people injured in the collision from the scene to a nearby hospital.",
+        "ts": 1665303010000,
+        "type": "TEXT",
+        "displayLocation": ""
+      }
+    }
+  },
+  {
+    "key": "-NE1sqrHdZybTYBA0jXT",
+    "raw": "Multi-Vehicle Collision at I-676 W & PA-611, Philadelphia, Pennsylvania, 19102",
+    "ts": 1665424334000,
+    "date": "10/10/2022, 1:52:14 PM",
+    "ll": [
+      39.95791000312096,
+      -75.16239996774235
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE1sqrHdZybTYBA0jXT.png",
+    "updates": {
+      "-NE1sqJFl7GTLLnq1E7H": {
+        "text": "Incident reported at I-676 W & PA-611.",
+        "ts": 1665422025999,
+        "type": "ROOT",
+        "displayLocation": "I-676 W & PA-611"
+      },
+      "-NE1sqrZ0KMD3G7WUvEX": {
+        "text": "According to an official tweet from the Pennsylvania Department of Transportation, a lane is restricted following a multi-vehicle collision.",
+        "ts": 1665422026000,
+        "type": "TEXT",
+        "displayLocation": "I-676 W & PA-611"
+      },
+      "-NE20dr8qd4tnm_GCYWk": {
+        "text": "According to an official tweet from the Pennsylvania Department of Transportation, the lane is now open and the collision cleared.",
+        "ts": 1665424332000,
+        "type": "TEXT",
+        "displayLocation": ""
+      }
+    }
+  },
+  {
+    "key": "-NE1Zi_nAmoySc4GYDvr",
+    "raw": "Vehicle Collision Near Paschall Playground at 2800 S 70th St, Philadelphia, Pennsylvania, 19142",
+    "ts": 1665416751000,
+    "date": "10/10/2022, 11:45:51 AM",
+    "ll": [
+      39.913758988678,
+      -75.23342142056552
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE1Zi_nAmoySc4GYDvr.png",
+    "updates": {
+      "-NE1Zhz72ff44tEc112y": {
+        "text": "Incident reported at 2800 S 70th St.",
+        "ts": 1665416748999,
+        "type": "ROOT",
+        "displayLocation": "2800 S 70th St"
+      },
+      "-NE1Zia8BSwU_EOuHUws": {
+        "text": "Police on the scene report a vehicle collision near Paschall Playground.",
+        "ts": 1665416749000,
+        "type": "TEXT",
+        "displayLocation": "2800 S 70th St"
+      }
+    }
+  },
+  {
+    "key": "-NE39pIICnDGQPW1hMv5",
+    "raw": "Pedestrian Struck by Vehicle at S Broad St & Spruce St, Philadelphia, Pennsylvania, 19102",
+    "ts": 1665446105000,
+    "date": "10/10/2022, 7:55:05 PM",
+    "ll": [
+      39.94699001775447,
+      -75.16475997640042
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE39pIICnDGQPW1hMv5.png",
+    "updates": {
+      "-NE39otVOR5HObhUJSe0": {
+        "text": "Incident reported at S Broad St & Spruce St.",
+        "ts": 1665443515999,
+        "type": "ROOT",
+        "displayLocation": "S Broad St & Spruce St"
+      },
+      "-NE39pIdiFFelNIi1G1T": {
+        "text": "First responders are responding to a 911 report of a pedestrian struck by a vehicle.",
+        "ts": 1665443516000,
+        "type": "TEXT",
+        "displayLocation": "S Broad St & Spruce St"
+      },
+      "-NE3Jh-IrNqaQjBMqx5Q": {
+        "text": "Police on the scene confirm a pedestrian is struck by a vehicle and they will be blocking the roadway southbound on Broad Street toward Spruce Street.",
+        "ts": 1665446104000,
+        "type": "TEXT",
+        "displayLocation": ""
+      }
+    }
+  },
+  {
+    "key": "-NE39gHtLj3XB7T3xloL",
+    "raw": "Scooter Crash at 301-399 S Watts St, Philadelphia, PA, 19107, USA",
+    "ts": 1665443480000,
+    "date": "10/10/2022, 7:11:20 PM",
+    "ll": [
+      39.9462659,
+      -75.1641304
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE39gHtLj3XB7T3xloL.png",
+    "updates": {
+      "-NE39g6-cFOuCc_XjBwl": {
+        "text": "Incident reported at 327 S Watts St.",
+        "ts": 1665443479999,
+        "type": "ROOT",
+        "displayLocation": "327 S Watts St"
+      },
+      "-NE39gIGTolqfER6OJru": {
+        "text": "A Citizen user shows video of bystanders and paramedics active in the street.",
+        "ts": 1665443480000,
+        "type": "TEXT",
+        "displayLocation": "327 S Watts St"
+      }
+    }
+  },
+  {
+    "key": "-NE8Go8fHKPyzb9oHFJf",
+    "raw": "Vehicle Collision With Injuries at N 9th St & W Rockland St, Philadelphia, Pennsylvania, 19141",
+    "ts": 1665529234000,
+    "date": "10/11/2022, 7:00:34 PM",
+    "ll": [
+      40.026519987744535,
+      -75.13869996887571
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE8Go8fHKPyzb9oHFJf.png",
+    "updates": {
+      "-NE8Gntc0GT33ApPWp43": {
+        "text": "Incident reported at N 9th St & W Rockland St.",
+        "ts": 1665529232999,
+        "type": "ROOT",
+        "displayLocation": "N 9th St & W Rockland St"
+      },
+      "-NE8Go8wVYH6vs-WFb3F": {
+        "text": "Police have received a 911 report of a vehicle collision with possible injuries involving a firefighter unit.",
+        "ts": 1665529233000,
+        "type": "TEXT",
+        "displayLocation": "N 9th St & W Rockland St"
+      }
+    }
+  },
+  {
+    "key": "-NE7HM9sH-FPZGa6WRpy",
+    "raw": "Vehicle Collision at 2300 Catharine St, Philadelphia, Pennsylvania, 19146",
+    "ts": 1665512600000,
+    "date": "10/11/2022, 2:23:20 PM",
+    "ll": [
+      39.942516009296526,
+      -75.18100100345025
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE7HM9sH-FPZGa6WRpy.png",
+    "updates": {
+      "-NE7HMABuA_K6-lL63RX": {
+        "text": "Police have received a 911 report of a vehicle collision.",
+        "ts": 1665512601000,
+        "type": "TEXT",
+        "displayLocation": "2300 Catharine St"
+      },
+      "-NE7HMLciLAxcA666CBX": {
+        "text": "Incident reported at 2300 Catharine St.",
+        "ts": 1665512600999,
+        "type": "ROOT",
+        "displayLocation": "2300 Catharine St"
+      }
+    }
+  },
+  {
+    "key": "-NE6w7LNiVneFl_YC6cw",
+    "raw": "People Fighting Following Vehicle Collision at N 5th St & Callowhill St, Philadelphia, Pennsylvania, 19106",
+    "ts": 1665506772000,
+    "date": "10/11/2022, 12:46:12 PM",
+    "ll": [
+      39.957790016177,
+      -75.14721003135071
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE6w7LNiVneFl_YC6cw.png",
+    "updates": {
+      "-NE6w7LgzugkrTQmjnMY": {
+        "text": "Police have received a 911 report of people fighting after a vehicle collision.",
+        "ts": 1665506773000,
+        "type": "TEXT",
+        "displayLocation": "N 5th St & Callowhill St"
+      },
+      "-NE6w7V7gV_nMyUzK_3v": {
+        "text": "Incident reported at N 5th St & Callowhill St.",
+        "ts": 1665506772999,
+        "type": "ROOT",
+        "displayLocation": "N 5th St & Callowhill St"
+      }
+    }
+  },
+  {
+    "key": "-NE6pL_h1_O_81bBRVTl",
+    "raw": "Vehicle Collision  at Roosevelt Blvd & Summerdale Ave, Philadelphia, Pennsylvania, 19124",
+    "ts": 1665504995000,
+    "date": "10/11/2022, 12:16:35 PM",
+    "ll": [
+      40.02694000491263,
+      -75.0973299961059
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE6pL_h1_O_81bBRVTl.png",
+    "updates": {
+      "-NE6pLa0uGkMOIhehDVJ": {
+        "text": "Police have received a 911 report of a vehicle collision.",
+        "ts": 1665504997000,
+        "type": "TEXT",
+        "displayLocation": "Roosevelt Blvd & Summerdale Ave"
+      },
+      "-NE6pLu7N-xsdljpnNXR": {
+        "text": "Incident reported at Roosevelt Blvd & Summerdale Ave.",
+        "ts": 1665504996999,
+        "type": "ROOT",
+        "displayLocation": "Roosevelt Blvd & Summerdale Ave"
+      }
+    }
+  },
+  {
+    "key": "-NE6WRoBh13J8sDUScJc",
+    "raw": "Vehicle Collision at 3000 F St, Philadelphia, Pennsylvania, 19134",
+    "ts": 1665499778000,
+    "date": "10/11/2022, 10:49:38 AM",
+    "ll": [
+      39.99399250891907,
+      -75.11805055623591
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE6WRoBh13J8sDUScJc.png",
+    "updates": {
+      "-NE6WR-NZaFUps1FHfJ_": {
+        "text": "Incident reported at 3000 F St.",
+        "ts": 1665499774999,
+        "type": "ROOT",
+        "displayLocation": "3000 F St"
+      },
+      "-NE6WRoV4u1Px5ilJP3-": {
+        "text": "Police on the scene report a vehicle collision involving a city vehicle.",
+        "ts": 1665499775000,
+        "type": "TEXT",
+        "displayLocation": "3000 F St"
+      }
+    }
+  },
+  {
+    "key": "-NE5WDpIRq8relT6p7w6",
+    "raw": "Vehicle Collision at 1320 W Somerville Ave, Philadelphia, PA, 19141, USA",
+    "ts": 1665482943000,
+    "date": "10/11/2022, 6:09:03 AM",
+    "ll": [
+      40.0349803,
+      -75.1443405
+    ],
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NE5WDpIRq8relT6p7w6.png",
+    "updates": {
+      "-NE5WDpfw9dwIPoB_hjf": {
+        "text": "Citizen user video shows a vehicle collision.",
+        "ts": 1665482944000,
+        "type": "TEXT",
+        "displayLocation": "1320 W Somerville Ave"
+      },
+      "-NE5WDs-Xmpdnmz3uUj_": {
+        "text": "Incident reported at 1320 W Somerville Ave.",
+        "ts": 1665482943999,
+        "type": "ROOT",
+        "displayLocation": "1320 W Somerville Ave"
+      }
+    }
+  }
+]

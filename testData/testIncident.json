@@ -1,0 +1,186 @@
+[
+  {
+    "address": "Torresdale Ave & Robbins St, Philadelphia, Pennsylvania, 19135",
+    "broadcastRules": {
+      "distanceMeters": 1609,
+      "deadline": 1664613789000
+    },
+    "cityCode": "us-pa-philadelphia",
+    "cs": 1664604488000,
+    "hasVod": false,
+    "key": "-NDH9B9iE3xvM3-q0dRI",
+    "level": 2,
+    "location": "Torresdale Ave & Robbins St",
+    "latitude": 40.02052005381347,
+    "longitude": -75.05372993417724,
+    "neighborhood": "Wissinoming, Philadelphia",
+    "raw": "Woman Fatally Injured in Collision at Torresdale Ave & Robbins St, Philadelphia, Pennsylvania, 19135",
+    "ll": [
+      40.02052005381347,
+      -75.05372993417724
+    ],
+    "rawLocation": "Torresdale Ave & Robbins St, Philadelphia, Pennsylvania, 19135",
+    "title": "Woman Fatally Injured in Collision",
+    "transcriber": "d59da01b7b1a087ac2f7",
+    "ts": 1664610190000,
+    "police": "PPD 15 NEast",
+    "shareImageText": "",
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDH9B9iE3xvM3-q0dRI.png",
+    "homescreenMapThumbnail": "https://storage.googleapis.com/citizen-notif-attachment/-NDH9B9iE3xvM3-q0dRI-homescreen.png",
+    "updates": {
+      "-NDH9B4-Lv5lgld5ZJWx": {
+        "text": "Incident reported at Torresdale Ave & Robbins St.",
+        "ts": 1664604487999,
+        "type": "ROOT",
+        "displayLocation": "Torresdale Ave & Robbins St"
+      },
+      "-NDH9BA1VWFyCKa3gTHZ": {
+        "text": "Police received a 911 report of a pedestrian struck by a vehicle. EMS is en route.",
+        "ts": 1664604488000,
+        "type": "TEXT",
+        "displayLocation": "Torresdale Ave & Robbins St"
+      },
+      "-NDHJYeAFwirKy6TIuO0": {
+        "text": "Police report that a woman was killed in the collision.",
+        "ts": 1664607205000,
+        "type": "TEXT",
+        "displayLocation": ""
+      },
+      "-NDHKT2Ou8q5IIq2QmB-": {
+        "text": "Police report the woman who was struck was a pedestrian.",
+        "ts": 1664607445000,
+        "type": "TEXT",
+        "displayLocation": ""
+      }
+    },
+    "nearbyThreshold": 400,
+    "recentThreshold": 1800,
+    "recencyThreshold": 7200,
+    "twitterHandle": "@CitizenBreakingPHL",
+    "placeholderImageURL": "https://storage.googleapis.com/citizen-assets/placeholders/us-pa-philadelphia-2x.png",
+    "facepile": null,
+    "severity": "red",
+    "source": "911",
+    "chatBlocked": false,
+    "closed": false,
+    "modules": [
+      {
+        "id": "ed8be2b6-b544-4cba-8bc9-be0d6841c6a9",
+        "type": "nib",
+        "title": "Citizen Summary",
+        "rank": 0,
+        "template": {
+          "name": "",
+          "gcsUrl": ""
+        }
+      },
+      {
+        "id": "60410368-bfc8-4e87-9aec-e4ed42a31f28",
+        "type": "updates",
+        "title": "Updates",
+        "rank": 1,
+        "template": {
+          "name": "",
+          "gcsUrl": ""
+        }
+      }
+    ],
+    "videoPreviewFeatured": false,
+    "isGoodNews": false,
+    "magicMomentsTag": null,
+    "displayStyle": "tray",
+    "categories": [
+      "Traffic Related"
+    ],
+    "incidentSettings": {
+      "displayStyle": "tray",
+      "mapVisibility": "default"
+    }
+  },
+  {
+    "address": "S 6th St & Spruce St, Philadelphia, Pennsylvania, 19106",
+    "broadcastRules": {
+      "distanceMeters": 805,
+      "deadline": 1664578686000
+    },
+    "cityCode": "us-pa-philadelphia",
+    "cs": 1664577486000,
+    "hasVod": false,
+    "key": "-NDFY9w_UbacPAkj3wqo",
+    "level": 0,
+    "location": "S 6th St & Spruce St",
+    "latitude": 39.945380021792545,
+    "longitude": -75.151589911036,
+    "neighborhood": "Society Hill, Philadelphia",
+    "raw": "Vehicle Collision at S 6th St & Spruce St, Philadelphia, Pennsylvania, 19106",
+    "ll": [
+      39.945380021792545,
+      -75.151589911036
+    ],
+    "rawLocation": "S 6th St & Spruce St, Philadelphia, Pennsylvania, 19106",
+    "title": "Vehicle Collision",
+    "transcriber": "4e74490246f8ffd2d9e7",
+    "ts": 1664577482000,
+    "police": "PPD 6 Central",
+    "shareImageText": "",
+    "shareMap": "https://storage.googleapis.com/citizen-notif-attachment/-NDFY9w_UbacPAkj3wqo.png",
+    "homescreenMapThumbnail": "https://storage.googleapis.com/citizen-notif-attachment/-NDFY9w_UbacPAkj3wqo-homescreen.png",
+    "updates": {
+      "-NDFY9wrOP2PIrVFYab7": {
+        "text": "Police have received a 911 report of a vehicle collision.",
+        "ts": 1664577486000,
+        "type": "TEXT",
+        "displayLocation": "S 6th St & Spruce St"
+      },
+      "-NDFYAmk0CxjotNUPerU": {
+        "text": "Incident reported at S 6th St & Spruce St.",
+        "ts": 1664577485999,
+        "type": "ROOT",
+        "displayLocation": "S 6th St & Spruce St"
+      }
+    },
+    "nearbyThreshold": 400,
+    "recentThreshold": 1800,
+    "recencyThreshold": 7200,
+    "twitterHandle": "@CitizenBreakingPHL",
+    "placeholderImageURL": "https://storage.googleapis.com/citizen-assets/placeholders/us-pa-philadelphia-2x.png",
+    "facepile": null,
+    "severity": "yellow",
+    "source": "911",
+    "chatBlocked": false,
+    "closed": false,
+    "modules": [
+      {
+        "id": "4fccf69c-d26b-4b74-97fc-e621cce60c7b",
+        "type": "nib",
+        "title": "Citizen Summary",
+        "rank": 0,
+        "template": {
+          "name": "",
+          "gcsUrl": ""
+        }
+      },
+      {
+        "id": "6cbfb57b-2183-41bd-b9a7-d4977d969e54",
+        "type": "updates",
+        "title": "Updates",
+        "rank": 1,
+        "template": {
+          "name": "",
+          "gcsUrl": ""
+        }
+      }
+    ],
+    "videoPreviewFeatured": false,
+    "isGoodNews": false,
+    "magicMomentsTag": null,
+    "displayStyle": "tray",
+    "categories": [
+      "Traffic Related"
+    ],
+    "incidentSettings": {
+      "displayStyle": "tray",
+      "mapVisibility": "default"
+    }
+  }
+]
