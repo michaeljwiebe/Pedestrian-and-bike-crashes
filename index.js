@@ -197,7 +197,7 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
 
   // add a tweet tagging city reps in after the summary
   if (representatives[argv.location].list && representatives[argv.location].list.length) {
-    const councilMembersAndTagsTweet = `${representatives[argv.location].join(' ')}`
+    const councilMembersAndTagsTweet = `${representatives[argv.location].list.join(' ')}`
     tweets.push(councilMembersAndTagsTweet)
   }
 
@@ -238,6 +238,7 @@ const excludeWeaponsAndRobbery = (array) => array.filter(x =>
 
 const containsWeaponsAndRobberyText = (text) =>
   text.includes('robbed') ||
+  text.includes('robber') ||
   text.includes('burglar') ||
   text.includes('breaking into') ||
   text.includes('stolen') ||
