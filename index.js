@@ -40,6 +40,7 @@ const fetchIncidents = async () => {
 
 /**
  * Makes a GET request to download a geojson file of City Council Districts.
+ * Use this if you're hosting the file somewhere other than this repo.
  * @param {String} url url of the geojson file to download
  * @returns resolved promise.
  */
@@ -102,7 +103,7 @@ const mapCoordinateToCityCouncilDistrict = (coordinate, cityCouncilFeatures) => 
 
 const mapIncidentsToCityCouncilDistricts = (incidents) => {
   const cityCouncilFeatureCollection = turf.featureCollection(
-    JSON.parse(fs.readFileSync(`${assetDirectory}/city_council_districts.geojson`))
+    JSON.parse(fs.readFileSync(`repsGeoJSON/representatives-${argv.location}.geojson`))
   ).features.features
 
   return incidents.map(x => {
@@ -165,11 +166,10 @@ const tweetIncidentThread = async (client, incident) => {
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err.message);
     console.log('errored filtered thread', filteredTweets);
-    console.log('errored original thread', tweets);
-    const errFile = fs.readFileSync(errorFile);
+    const errFile = fs.readFileSync(errorFilePath);
     const errors = JSON.parse(errFile);
     fs.writeFile(
-      errorFile,
+      errorFilePath,
       JSON.stringify([...errors, tweets])
     );
   }
@@ -188,11 +188,24 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
   let firstTweet = numIncidents > 0
     ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
-  const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred.`
+  const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred. Injuries reported here may have been fatal.`
 
   const tweets = [firstTweet]
-  if (numIncidents > 0) {
-    tweets.push(disclaimerTweet)
+
+  if (numIncidents > 0 && argv.tweetReps) {
+    // TODO: not working right for KC, districts is empty
+    const districts = [...new Set(incidents.map(x => x.cityCouncilDistrict))].sort()
+    console.log('tweetSummary districts', districts)
+    // if (argv.tweetReps) {
+    //   const districts = [...new Set(incidents.map(x => x.cityCouncilDistrict))].sort()
+    //   const districtSentenceStart = numIncidents === 1 ? 'The crash occurred in' : 'The crashes occurred in'
+    //   tweets.push(`${districtSentenceStart} ${representatives[argv.location].repesentativeDistrictTerm}${districts.length === 1 ? '' : 's'} ${districts.join(', ')}.`)
+    // }
+
+    if (argv.tweetReps && representatives[argv.location].atLarge) {
+      const atLargeRepInfo = representatives[argv.location].atLarge
+      tweets.push(`At large city council representatives and president: ${lf.format(atLargeRepInfo)}`)
+    }
   }
 
   // add a tweet tagging city reps in after the summary
@@ -201,27 +214,14 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
     tweets.push(councilMembersAndTagsTweet)
   }
 
-  if (numIncidents > 0 && argv.tweetReps) {
-    if (argv.tweetReps) {
-      const districts = [...new Set(incidents.map(x => x.cityCouncilDistrict))].sort()
-      const districtSentenceStart = numIncidents === 1 ? 'The crash occurred in' : 'The crashes occurred in'
-      const districtSentenceEnd = districts.length === 1
-        ? `${representatives[argv.location].repesentativeDistrictTerm} ${lf.format(districts)}`
-        : `${representatives[argv.location].repesentativeDistrictTerm}s ${lf.format(districts)}`
-
-      tweets[0] = `${firstTweet}\n\n${districtSentenceStart} ${districtSentenceEnd}.`
-    }
-
-    if (argv.tweetReps && representatives[argv.location].atLarge) {
-      const atLargeRepInfo = representatives[argv.location].atLarge
-      tweets.push(`At large city council representatives and president: ${lf.format(atLargeRepInfo)}`)
-    }
+  if (numIncidents > 0) {
+    tweets.push(disclaimerTweet)
   }
 
   try {
     await client.v2.tweetThread(tweets)
   } catch (err) {
-    console.log('error on tweetSummaryOfLast24Hours: ', err)
+    console.log('error on tweetSummaryOfLast24Hours: ', err.message)
     console.log('errored out tweets', tweets)
   }
 
@@ -314,7 +314,8 @@ const validateInputs = () => {
 const handleIncidentTweets = async (client, filteredIncidents) => {
 
   if (argv.tweetReps) {
-    await downloadCityCouncilPolygons(representatives[argv.location].geojsonUrl)
+    // disabled due to storing geojson file in repo
+    // await downloadCityCouncilPolygons(representatives[argv.location].geojsonUrl)
     filteredIncidents = mapIncidentsToCityCouncilDistricts(filteredIncidents)
   }
 
@@ -324,7 +325,7 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
     try {
       await downloadMapImages(incident, incident.key)
     } catch (err) {
-      console.log('error on downloadMapImages: ', err)
+      console.log('error on downloadMapImages: ', err.message)
     }
     await tweetIncidentThread(client, incident)
 
@@ -337,8 +338,8 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
   }
 }
 
-const tweetIncidentSummaryFile = `./archive/tweetIncidentSummaries-${argv.location}.json`
-const errorFile = `./errors/${argv.location}.json`
+const tweetIncidentSummaryFilePath = `./archive/tweetIncidentSummaries-${argv.location}.json`
+const errorFilePath = `./errors/${argv.location}.json`
 
 const saveIncidentSummaries = (array, path) => {
   fs.writeFile(
@@ -362,22 +363,22 @@ const getSummarizedIncident = (incident) => ({
 const eliminateDuplicateIncidents = (array) => {
   let previouslySavedList = [];
   try {
-    const summaryFile = fs.readFileSync(tweetIncidentSummaryFile);
+    const summaryFile = fs.readFileSync(tweetIncidentSummaryFilePath);
     previouslySavedList = JSON.parse(summaryFile);
   } catch (err) {
     console.log('error reading file: ', err.message);
   }
   const incidentKeys = previouslySavedList.map(summary => summary.key);
   const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
-  saveIncidentSummaries([...previouslySavedList, ...finalList], tweetIncidentSummaryFile);
+  saveIncidentSummaries([...previouslySavedList, ...finalList], tweetIncidentSummaryFilePath);
   return {finalList, previouslySavedList};
 }
 
 const saveIncidentToArchive = (incident) => {
   try {
-    const summaryFile = fs.readFileSync(tweetIncidentSummaryFile);
+    const summaryFile = fs.readFileSync(tweetIncidentSummaryFilePath);
     const previouslySavedList = JSON.parse(summaryFile);
-    saveIncidentSummaries([...previouslySavedList, incident], tweetIncidentSummaryFile);
+    saveIncidentSummaries([...previouslySavedList, incident], tweetIncidentSummaryFilePath);
   } catch (err) {
     console.log('error reading file: ', err.message);
   }
@@ -450,6 +451,8 @@ const main = async () => {
 main();
 // eliminateDuplicateIncidents([]);
 // fetchIncidents();
+
+// @TODO: build out functionality to read archives and post week/month summaries
 
 module.exports = {
   filterIncidentsWithPedBikeUpdates,
