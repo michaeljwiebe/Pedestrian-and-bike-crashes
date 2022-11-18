@@ -394,9 +394,9 @@ const handleFiltering = (potentialIncidents) => {
   // remove ped/bike incidents from list to see if others are vehicle only
   const remainingIncidents = excludeList(potentialIncidents, pedBikeIncidents);
   const incidentsWithRelevantUpdates = filterIncidentsWithPedBikeUpdates(remainingIncidents);
-  const vehicleOnlyIncidents = filterVehicleOnlyIncidents(remainingIncidents);
-  const otherIncidents = filterOtherIncidents(excludeList(remainingIncidents, vehicleOnlyIncidents))
-  const fullIncidentList = [...vehicleOnlyIncidents, ...incidentsWithRelevantUpdates, ...otherIncidents, ...pedBikeIncidents];
+  const vehicleOnlyIncidentsSorted = filterVehicleOnlyIncidents(remainingIncidents).sort((a, b) => a.ts - b.ts);
+  const otherIncidents = filterOtherIncidents(excludeList(remainingIncidents, vehicleOnlyIncidentsSorted))
+  const fullIncidentList = [...vehicleOnlyIncidentsSorted, ...otherIncidents, ...incidentsWithRelevantUpdates, ...pedBikeIncidents];
   const rawTextArr = fullIncidentList.map(x => x.raw.toLowerCase());
   return {
     incidentList: fullIncidentList,
