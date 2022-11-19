@@ -429,7 +429,7 @@ const main = async () => {
   if (allIncidents.length === 0) {
     await client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
   } else {
-    resetAssetsFolder();
+    // resetAssetsFolder();
 
     const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
     const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
