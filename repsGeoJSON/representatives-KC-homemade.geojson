@@ -1,20 +1,21 @@
 {
-  "type":"FeatureCollection",
-  "features":[
+  "type": "FeatureCollection",
+  "features": [
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"1889762416.8614099",
-        "objectid":"659",
-        "indistrict":"Heather Hall",
-        "atlarge":"Kevin O'Neill",
-        "district":"1",
-        "NAME":"1",
-        "shape_len":"362227.21016986703"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "1889762416.8614099",
+        "objectid": "659",
+        "indistrict": "Heather Hall @Hall1stDistrict @HeatherHallKC",
+        "atlarge": "Kevin O'Neill @KOneillkcmo",
+        "GEOTYPE": "City Council District",
+        "district": "1",
+        "NAME": "1",
+        "shape_len": "362227.21016986703"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [
@@ -10715,19 +10716,18 @@
       }
     },
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"1515862388.8979299",
-        "objectid":"662",
-        "indistrict":"Ryana Parks-Shaw",
-        "atlarge":"Lee Barnes, Jr",
-        "district":"5",
-        "NAME":"5",
-        "shape_len":"268473.68897557002"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "1515862388.8979299",
+        "objectid": "662",
+        "indistrict": "Ryana Parks-Shaw @Ryana4KC",
+        "atlarge": "Lee Barnes, Jr #LeeBarnes",
+        "district": "5",
+        "shape_len": "268473.68897557002"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [
@@ -15264,18 +15264,18 @@
       }
     },
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"801566322.82187498",
-        "objectid":"661",
-        "indistrict":"Melissa Robinson",
-        "atlarge":"Brandon Ellington",
-        "NAME":"3",
-        "shape_len":"151073.17190186901"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "801566322.82187498",
+        "objectid": "661",
+        "indistrict": "Melissa Robinson @Robinson4kc",
+        "atlarge": "Brandon Ellington @ellington_b",
+        "district": "3",
+        "shape_len": "151073.17190186901"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [
@@ -17852,18 +17852,18 @@
       }
     },
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"2421742895.3007102",
-        "objectid":"967",
-        "indistrict":"Dan Fowler",
-        "atlarge":"Teresa Loar",
-        "NAME":"2",
-        "shape_len":"304454.09688851604"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "2421742895.3007102",
+        "objectid": "967",
+        "indistrict": "Dan Fowler @DanFowlerKCMO",
+        "atlarge": "Teresa Loar @TeresaLoar",
+        "district": "2",
+        "shape_len": "304454.09688851604"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [
@@ -25462,18 +25462,18 @@
       }
     },
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"882052719.05546904",
-        "objectid":"968",
-        "indistrict":"Eric Bunch",
-        "atlarge":"Katheryn Shields",
-        "NAME":"4",
-        "shape_len":"256904.75392366099"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "882052719.05546904",
+        "objectid": "968",
+        "indistrict": "Eric Bunch @EricWBunch",
+        "atlarge": "Katheryn Shields @K_J_Shields",
+        "district": "4",
+        "shape_len": "256904.75392366099"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [
@@ -31994,18 +31994,19 @@
       }
     },
     {
-      "type":"Feature",
-      "properties":{
-        "shape_area":"1381037516.5603399",
-        "objectid":"660",
-        "indistrict":"Kevin McManus",
-        "atlarge":"Andrea Bough",
-        "NAME":"6",
-        "shape_len":"337556.11707063997"
+      "type": "Feature",
+      "properties": {
+        "shape_area": "1381037516.5603399",
+        "objectid": "660",
+        "indistrict": "Kevin McManus @mcmanuskc",
+        "atlarge": "Andrea Bough @AndreaBough",
+        "district": "6",
+        "NAME": "6",
+        "shape_len": "337556.11707063997"
       },
-      "geometry":{
-        "type":"MultiPolygon",
-        "coordinates":[
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [

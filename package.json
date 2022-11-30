@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build; tsc -b",
-    "philly": "node index.js --location Philly --tweetSatellite",
+    "philly": "node index.js --location Philly --tweetSatellite --tweetReps",
     "rva": "node index.js --location RVA --tweetSatellite --tweetReps",
     "kc": "node index.js --location KC --tweetSatellite --tweetReps",
     "bots": "concurrently 'npm run philly' 'npm run kc' 'npm run rva'",
