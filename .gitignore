@@ -1,7 +1,6 @@
 keys.js
 .DS_Store
 node_modules/
-assets/
 
 # IDE files
 .idea

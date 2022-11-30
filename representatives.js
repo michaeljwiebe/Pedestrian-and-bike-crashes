@@ -17,8 +17,19 @@ module.exports = {
     atLarge: ['@Michael_J_Bond', '@WestmorelandATL', '@WaitesKeisha', '@DougShipmanATL'],
   },
   RVA: {
+    geojsonUrl: 'using.local.file.for.this.location',
     list: ['@DPW_RichmondVA', '@LevarStoney', '@andreasrva', '@KatherineJRVA', '@AnnCan2020', '@kristenRVA',
-      '@Stephanie4RVA', '@ellenrva', '@CynthiaNewbille', '@TrammellReva', '@thedrmikejones']
+      '@Stephanie4RVA', '@ellenrva', '@CynthiaNewbille', '@TrammellReva', '@thedrmikejones'],
+    repesentativeDistrictTerm: 'city council district',
+    '1': '@andreasrva',
+    '2': '@KatherineJRVA',
+    '3': '@AnnCan2020',
+    '4': '@kristenRVA',
+    '5': '@Stephanie4RVA',
+    '6': '@ellenrva',
+    '7': '@CynthiaNewbille',
+    '8': '@TrammellReva',
+    '9': '@thedrmikejones',
   },
   Philly: {
     list: ['@PhillyMayor', '@Darrell_Clarke', '@marksquilla', '@CouncilmemberKJ', '@CouncilmemberJG', '@Mr_4thDistrict', '@RepDriscoll',

@@ -101,6 +101,7 @@ const mapCoordinateToCityCouncilDistrict = (coordinate, cityCouncilFeatures) => 
   return null
 }
 
+// debug this
 const mapIncidentsToCityCouncilDistricts = (incidents) => {
   const cityCouncilFeatureCollection = turf.featureCollection(
     JSON.parse(fs.readFileSync(`repsGeoJSON/representatives-${argv.location}.geojson`))
@@ -166,7 +167,12 @@ const tweetIncidentThread = async (client, incident) => {
   } catch (err) {
     console.log('error on tweetIncidentThread: ', err.message);
     console.log('errored filtered thread', filteredTweets);
-    const errFile = fs.readFileSync(errorFilePath);
+    let errFile;
+    try {
+      errFile = fs.readFileSync(errorFilePath);
+    } catch (e) {
+      fs.writeFile(errorFilePath, '[]')
+    }
     const errors = JSON.parse(errFile);
     fs.writeFile(
       errorFilePath,
@@ -321,6 +327,7 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
 
   for (const incident of filteredIncidents) {
     console.log(incident.raw)
+    console.log(incident.cityCouncilDistrict)
 
     try {
       await downloadMapImages(incident, incident.key)
@@ -338,12 +345,13 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
   }
 }
 
-const tweetIncidentSummaryFilePath = `./archive/tweetIncidentSummaries-${argv.location}.json`
-const errorFilePath = `./errors/${argv.location}.json`
+const currentDate = new Date();
+const currentSummaryFilePath = `./archive/${argv.location}/${argv.location}-summaries-${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
+const errorFilePath = `./errors/${argv.location}/${argv.location}-errors-${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
 
-const saveIncidentSummaries = (array, path) => {
+const saveIncidentSummaries = (array) => {
   fs.writeFile(
-    path,
+    currentSummaryFilePath,
     JSON.stringify(
       array.map(obj => getSummarizedIncident(obj))
     )
@@ -356,6 +364,8 @@ const getSummarizedIncident = (incident) => ({
   ts: incident.ts,
   date: new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}),
   ll: incident.ll,
+  longitude: incident.longitude,
+  latitude: incident.latitude,
   shareMap: incident.shareMap,
   updates: incident.updates
 })
@@ -363,25 +373,29 @@ const getSummarizedIncident = (incident) => ({
 const eliminateDuplicateIncidents = (array) => {
   let previouslySavedList = [];
   try {
-    const summaryFile = fs.readFileSync(tweetIncidentSummaryFilePath);
+    const summaryFile = fs.readFileSync(currentSummaryFilePath);
     previouslySavedList = JSON.parse(summaryFile);
   } catch (err) {
     console.log('error reading file: ', err.message);
+    fs.writeFile(currentSummaryFilePath, '[]')
+    console.log('wrote file: ', currentSummaryFilePath)
   }
   const incidentKeys = previouslySavedList.map(summary => summary.key);
   const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
-  saveIncidentSummaries([...previouslySavedList, ...finalList], tweetIncidentSummaryFilePath);
+  saveIncidentSummaries([...previouslySavedList, ...finalList]);
   return {finalList, previouslySavedList};
 }
 
 const saveIncidentToArchive = (incident) => {
+  let summaryFile = [];
   try {
-    const summaryFile = fs.readFileSync(tweetIncidentSummaryFilePath);
-    const previouslySavedList = JSON.parse(summaryFile);
-    saveIncidentSummaries([...previouslySavedList, incident], tweetIncidentSummaryFilePath);
+    summaryFile = fs.readFileSync(currentSummaryFilePath);
   } catch (err) {
+    fs.writeFile(currentSummaryFilePath, '[]')
     console.log('error reading file: ', err.message);
   }
+  const previouslySavedList = JSON.parse(summaryFile);
+  saveIncidentSummaries([...previouslySavedList, incident]);
 }
 
 const excludeList = (fullList, listToExclude) => {
