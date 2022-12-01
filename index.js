@@ -11,6 +11,16 @@ const assert = require('node:assert/strict')
 const assetDirectory = `./assets/${argv.location}`
 
 const daysToTweet = argv.days ? Number(argv.days) : 1
+const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
+
+const keysObj = keys[argv.location];
+
+const client = new TwitterApi({
+  appKey: keysObj.consumer_key,
+  appSecret: keysObj.consumer_secret,
+  accessToken: keysObj.access_token,
+  accessSecret: keysObj.access_token_secret,
+});
 
 
 /**
@@ -131,7 +141,7 @@ const resetAssetsFolder = () => {
  * @param {*} client the instantiated Twitter client
  * @param {*} incident the Citizen incident to tweet
  */
-const tweetIncidentThread = async (client, incident) => {
+const tweetIncidentThread = async (incident) => {
   const incidentDate = new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone})
   const tweets = []
   const media_ids = []
@@ -157,9 +167,14 @@ const tweetIncidentThread = async (client, incident) => {
     }
   }
 
-  if (argv.tweetReps && representatives[argv.location][incident.cityCouncilDistrict] && incident.cityCouncilDistrict) {
-    const representative = representatives[argv.location][incident.cityCouncilDistrict]
-    tweets.push(`This incident occurred in ${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`)
+  if (
+    argv.tweetReps
+    && representatives[argv.location][incident.cityCouncilDistrict]
+    && Number(incident.cityCouncilDistrict)
+  ) {
+    const representative = representatives[argv.location][incident.cityCouncilDistrict];
+    const districtTerm = representatives[argv.location].repesentativeDistrictTerm;
+    tweets.push(`This incident occurred in ${districtTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`)
   }
   const filteredTweets = tweets.filter(tweet => tweet);
   try {
@@ -170,14 +185,14 @@ const tweetIncidentThread = async (client, incident) => {
     let errFile;
     try {
       errFile = fs.readFileSync(errorFilePath);
+      const errors = JSON.parse(errFile);
+      fs.writeFile(
+        errorFilePath,
+        JSON.stringify([...errors, tweets])
+      );
     } catch (e) {
-      fs.writeFile(errorFilePath, '[]')
+      fs.writeFile(errorFilePath, JSON.stringify([tweets]))
     }
-    const errors = JSON.parse(errFile);
-    fs.writeFile(
-      errorFilePath,
-      JSON.stringify([...errors, tweets])
-    );
   }
   saveIncidentToArchive(incident)
 }
@@ -187,10 +202,15 @@ const tweetIncidentThread = async (client, incident) => {
  * @param {*} client the instantiated Twitter client
  * @param {*} incidents the relevant Citizen incidents
  */
-const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
-  const numIncidents = incidents.length
-  const lf = new Intl.ListFormat('en')
-  const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary
+const tweetSummaryOfLast24Hours = async () => {
+  const summaryFile = fs.readFileSync(currentSummaryFilePath);
+  const allIncidents = JSON.parse(summaryFile);
+  const incidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
+  const {summary} = handleFiltering(incidents);
+  const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary;
+  const numIncidents = incidents.length;
+  const lf = new Intl.ListFormat('en');
+
   let firstTweet = numIncidents > 0
     ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
@@ -220,9 +240,7 @@ const tweetSummaryOfLast24Hours = async (client, incidents, summary) => {
     tweets.push(councilMembersAndTagsTweet)
   }
 
-  if (numIncidents > 0) {
-    tweets.push(disclaimerTweet)
-  }
+  tweets.push(disclaimerTweet)
 
   try {
     await client.v2.tweetThread(tweets)
@@ -317,7 +335,7 @@ const validateInputs = () => {
   }
 }
 
-const handleIncidentTweets = async (client, filteredIncidents) => {
+const handleIncidentTweets = async (filteredIncidents) => {
 
   if (argv.tweetReps) {
     // disabled due to storing geojson file in repo
@@ -334,7 +352,7 @@ const handleIncidentTweets = async (client, filteredIncidents) => {
     } catch (err) {
       console.log('error on downloadMapImages: ', err.message)
     }
-    await tweetIncidentThread(client, incident)
+    await tweetIncidentThread(incident)
 
     // wait one minute to prevent rate limiting... or 3-4 secs generally works
     // on a brand new account, i had it set at 2 seconds (working for established accounts),
@@ -427,14 +445,6 @@ const handleFiltering = (potentialIncidents) => {
 
 const main = async () => {
   validateInputs();
-  const keysObj = keys[argv.location];
-
-  const client = new TwitterApi({
-    appKey: keysObj.consumer_key,
-    appSecret: keysObj.consumer_secret,
-    accessToken: keysObj.access_token,
-    accessSecret: keysObj.access_token_secret,
-  });
 
   const citizenResponse = await fetchIncidents();
   const allIncidents = citizenResponse.data.results;
@@ -445,24 +455,25 @@ const main = async () => {
   } else {
     // resetAssetsFolder();
 
-    const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
     const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
     const potentialIncidents = excludeWeaponsAndRobbery(currentIncidents);
 
-    let {incidentList, summary} = handleFiltering(potentialIncidents);
+    let {incidentList} = handleFiltering(potentialIncidents);
 
     // check for saved duplicates
     // this is also saving them all immediately. i should probably save these one by one on successful tweeting
     const {finalList} = eliminateDuplicateIncidents(incidentList);
 
-    await handleIncidentTweets(client, finalList);
+    await handleIncidentTweets(finalList);
 
     // tweet the summary last because then it'll always be at the top of the timeline
-    tweetSummaryOfLast24Hours(client, finalList, summary);
+    tweetSummaryOfLast24Hours();
   }
 }
 
 main();
+
+// tweetSummaryOfLast24Hours();
 // eliminateDuplicateIncidents([]);
 // fetchIncidents();
 
