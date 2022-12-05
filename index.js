@@ -194,7 +194,6 @@ const tweetIncidentThread = async (incident) => {
       fs.writeFile(errorFilePath, JSON.stringify([tweets]))
     }
   }
-  saveIncidentToArchive(incident)
 }
 
 /**
@@ -220,10 +219,9 @@ const tweetSummaryOfLast24Hours = async () => {
 
   if (numIncidents > 0 && argv.tweetReps) {
     // TODO: not working right for KC, districts is empty
-    const districts = [...new Set(incidents.map(x => x.cityCouncilDistrict))].sort()
-    console.log('tweetSummary districts', districts)
+    // const districts = Array.from(new Set(incidents.map(x => x.cityCouncilDistrict))).sort()
+    // console.log('tweetSummary districts', districts)
     // if (argv.tweetReps) {
-    //   const districts = [...new Set(incidents.map(x => x.cityCouncilDistrict))].sort()
     //   const districtSentenceStart = numIncidents === 1 ? 'The crash occurred in' : 'The crashes occurred in'
     //   tweets.push(`${districtSentenceStart} ${representatives[argv.location].repesentativeDistrictTerm}${districts.length === 1 ? '' : 's'} ${districts.join(', ')}.`)
     // }
@@ -371,7 +369,8 @@ const saveIncidentSummaries = (array) => {
   fs.writeFile(
     currentSummaryFilePath,
     JSON.stringify(
-      array.map(obj => getSummarizedIncident(obj))
+      // @TODO: fix for incidents somehow being duplicated in the summary file
+      Array.from(new Set(array.map(obj => getSummarizedIncident(obj))))
     )
   )
 }
@@ -398,22 +397,9 @@ const eliminateDuplicateIncidents = (array) => {
     fs.writeFile(currentSummaryFilePath, '[]')
     console.log('wrote file: ', currentSummaryFilePath)
   }
-  const incidentKeys = previouslySavedList.map(summary => summary.key);
-  const finalList = array.filter(obj => incidentKeys.indexOf(obj.key) === -1);
-  saveIncidentSummaries([...previouslySavedList, ...finalList]);
-  return {finalList, previouslySavedList};
-}
-
-const saveIncidentToArchive = (incident) => {
-  let summaryFile = [];
-  try {
-    summaryFile = fs.readFileSync(currentSummaryFilePath);
-  } catch (err) {
-    fs.writeFile(currentSummaryFilePath, '[]')
-    console.log('error reading file: ', err.message);
-  }
-  const previouslySavedList = JSON.parse(summaryFile);
-  saveIncidentSummaries([...previouslySavedList, incident]);
+  const unique = [...new Map([...previouslySavedList, ...array].map(incident => [incident.key, incident])).values()]
+  saveIncidentSummaries(unique);
+  return unique.filter(x => x.ts >= targetTimeInMs)
 }
 
 const excludeList = (fullList, listToExclude) => {
@@ -460,9 +446,8 @@ const main = async () => {
 
     let {incidentList} = handleFiltering(potentialIncidents);
 
-    // check for saved duplicates
-    // this is also saving them all immediately. i should probably save these one by one on successful tweeting
-    const {finalList} = eliminateDuplicateIncidents(incidentList);
+    // check for saved duplicates and return the ones that current
+    const finalList = eliminateDuplicateIncidents(incidentList);
 
     await handleIncidentTweets(finalList);
 
@@ -472,10 +457,9 @@ const main = async () => {
 }
 
 main();
-
-// tweetSummaryOfLast24Hours();
 // eliminateDuplicateIncidents([]);
-// fetchIncidents();
+// tweetSummaryOfLast24Hours();
+
 
 // @TODO: build out functionality to read archives and post week/month summaries
 
