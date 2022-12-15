@@ -386,7 +386,7 @@ const getSummarizedIncident = (incident) => ({
   latitude: incident.latitude,
   shareMap: incident.shareMap,
   updates: incident.updates,
-  cityCouncilDistrict: incident.cityCouncilDistrict
+  cityCouncilDistrict: incident.cityCouncilDistrict || null
 })
 
 const eliminateDuplicateIncidents = (array) => {
@@ -431,28 +431,25 @@ const handleFiltering = (potentialIncidents) => {
   };
 }
 
+const tweetApiDown = () => client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
+
 const main = async () => {
   validateInputs();
 
   const citizenResponse = await fetchIncidents();
   const allIncidents = citizenResponse.data.results;
   console.log(`${argv.location} incidents total: `, allIncidents.length);
-
-  if (allIncidents.length === 0) {
-    await client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
+  const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
+  if (currentIncidents.length === 0) {
+    tweetApiDown();
   } else {
     // resetAssetsFolder();
-
-    const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
     const potentialIncidents = excludeWeaponsAndRobbery(currentIncidents);
 
     let {incidentList} = handleFiltering(potentialIncidents);
-
     // check for saved duplicates and return the ones that current
     const finalList = eliminateDuplicateIncidents(incidentList);
-
     await handleIncidentTweets(finalList);
-
     // tweet the summary last because then it'll always be at the top of the timeline
     tweetSummaryOfLast24Hours();
   }
