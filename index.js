@@ -259,10 +259,12 @@ const excludeWeaponsAndRobbery = (array) => array.filter(x =>
 );
 
 const containsWeaponsAndRobberyText = (text) =>
+  text.includes('unfounded') ||
   text.includes('robbed') ||
   text.includes('robber') ||
   text.includes('burglar') ||
   text.includes('breaking into') ||
+  text.includes('broke into') ||
   text.includes('stolen') ||
   text.includes('gunmen') ||
   text.includes('gunman') ||
@@ -342,8 +344,7 @@ const handleIncidentTweets = async (filteredIncidents) => {
   }
 
   for (const incident of filteredIncidents) {
-    console.log(incident.raw)
-    console.log(incident.cityCouncilDistrict)
+    console.log(incident.cityCouncilDistrict, incident.raw)
 
     try {
       await downloadMapImages(incident, incident.key)
@@ -384,7 +385,8 @@ const getSummarizedIncident = (incident) => ({
   longitude: incident.longitude,
   latitude: incident.latitude,
   shareMap: incident.shareMap,
-  updates: incident.updates
+  updates: incident.updates,
+  cityCouncilDistrict: incident.cityCouncilDistrict
 })
 
 const eliminateDuplicateIncidents = (array) => {
