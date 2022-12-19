@@ -37,7 +37,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
  */
 const fetchIncidents = async () => {
   const location = keys[argv.location]
-  const limit = 200 * daysToTweet // 200 was not high enough for NYC data
+  const limit = 400 * daysToTweet // 200 was not high enough for Philly data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log(`${argv.location} url: `, citizenUrl);
   const response = await axios({
