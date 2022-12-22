@@ -37,15 +37,13 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
  */
 const fetchIncidents = async () => {
   const location = keys[argv.location]
-  const limit = 400 * daysToTweet // 200 was not high enough for Philly data
+  const limit = 1000 * daysToTweet // 800 was not high enough for Philly data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log(`${argv.location} url: `, citizenUrl);
-  const response = await axios({
+  return axios({
     url: citizenUrl,
     method: 'GET',
   })
-
-  return response
 }
 
 /**
@@ -268,6 +266,7 @@ const containsWeaponsAndRobberyText = (text) =>
   text.includes('stolen') ||
   text.includes('gunmen') ||
   text.includes('gunman') ||
+  text.includes('gunpoint') ||
   text.includes('gunfire') ||
   text.includes('armed') ||
   text.includes('fled');
@@ -344,7 +343,7 @@ const handleIncidentTweets = async (filteredIncidents) => {
   }
 
   for (const incident of filteredIncidents) {
-    console.log(incident.cityCouncilDistrict, incident.raw)
+    console.log(incident.cityCouncilDistrict, ' -- ', incident.raw)
 
     try {
       await downloadMapImages(incident, incident.key)
