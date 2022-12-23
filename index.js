@@ -40,10 +40,14 @@ const fetchIncidents = async () => {
   const limit = 1000 * daysToTweet // 800 was not high enough for Philly data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log(`${argv.location} url: `, citizenUrl);
-  return axios({
-    url: citizenUrl,
-    method: 'GET',
-  })
+  try {
+    return axios({
+      url: citizenUrl,
+      method: 'GET',
+    })
+  } catch (e) {
+    console.log('error getting citizen data', e)
+  }
 }
 
 /**
@@ -74,29 +78,33 @@ const downloadCityCouncilPolygons = async (url) => {
 const downloadMapImages = async (incident, eventKey) => {
   const citizenMapImagePath = path.resolve(__dirname, `${assetDirectory}/${eventKey}.png`)
   const citizenMapWriter = fs.createWriteStream(citizenMapImagePath)
-  const citizenMapResponse = await axios({
-    url: incident.shareMap,
-    method: 'GET',
-    responseType: 'stream',
-  })
-
-  if (argv.tweetSatellite && keys[argv.location].googleKey) {
-    const googleSatelliteImagePath = path.resolve(__dirname, `${assetDirectory}/${eventKey}_satellite.png`)
-    const googleSatelliteWriter = fs.createWriteStream(googleSatelliteImagePath)
-    const googleSatUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${incident.latitude},${incident.longitude}&size=500x500&zoom=20&maptype=hybrid&scale=2&key=${keys[argv.location].googleKey}`
-    const googleSatelliteResponse = await axios({
-      url: googleSatUrl,
+  try {
+    const citizenMapResponse = await axios({
+      url: incident.shareMap,
       method: 'GET',
       responseType: 'stream',
     })
 
-    return Promise.all([
-      new Promise(resolve => citizenMapResponse.data.pipe(citizenMapWriter).on('finish', resolve)),
-      new Promise(resolve => googleSatelliteResponse.data.pipe(googleSatelliteWriter).on('finish', resolve)),
-    ])
-  }
+    if (argv.tweetSatellite && keys[argv.location].googleKey) {
+      const googleSatelliteImagePath = path.resolve(__dirname, `${assetDirectory}/${eventKey}_satellite.png`)
+      const googleSatelliteWriter = fs.createWriteStream(googleSatelliteImagePath)
+      const googleSatUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${incident.latitude},${incident.longitude}&size=500x500&zoom=20&maptype=hybrid&scale=2&key=${keys[argv.location].googleKey}`
+      const googleSatelliteResponse = await axios({
+        url: googleSatUrl,
+        method: 'GET',
+        responseType: 'stream',
+      })
 
-  return new Promise(resolve => citizenMapResponse.data.pipe(citizenMapWriter).on('finish', resolve))
+      return Promise.all([
+        new Promise(resolve => citizenMapResponse.data.pipe(citizenMapWriter).on('finish', resolve)),
+        new Promise(resolve => googleSatelliteResponse.data.pipe(googleSatelliteWriter).on('finish', resolve)),
+      ])
+    }
+
+    return new Promise(resolve => citizenMapResponse.data.pipe(citizenMapWriter).on('finish', resolve))
+  } catch (e) {
+    console.log('error downloading map images', e)
+  }
 }
 
 const mapCoordinateToCityCouncilDistrict = (coordinate, cityCouncilFeatures) => {
@@ -353,7 +361,7 @@ const handleIncidentTweets = async (filteredIncidents) => {
     await tweetIncidentThread(incident)
 
     // wait one minute to prevent rate limiting... or 3-4 secs generally works
-    // on a brand new account, i had it set at 2 seconds (working for established accounts),
+    // on a brand-new account, i had it set at 2 seconds (working for established accounts),
     // but it cut me off midway through the tweets. using 30 secs had no issues with a long list
     // i do get occasional errors on threads but the initial tweet goes in that case.
     // I don't know what is wrong with the follow-up ones
@@ -430,6 +438,14 @@ const handleFiltering = (potentialIncidents) => {
   };
 }
 
+const tweetIncidentsAfterTs = async (ts) => {
+  const summaryFile = fs.readFileSync(currentSummaryFilePath);
+  const allIncidents = JSON.parse(summaryFile);
+  const incidents = allIncidents.filter(x => x.ts > ts);
+  await handleIncidentTweets(incidents);
+  tweetSummaryOfLast24Hours();
+}
+
 const tweetApiDown = () => client.v2.tweet(`The Citizen App or 911 reporting data relay service for ${argv.location} seems to be down today. Travel safely out there!`);
 
 const main = async () => {
@@ -456,6 +472,7 @@ const main = async () => {
 
 main();
 // eliminateDuplicateIncidents([]);
+// tweetIncidentsAfterTs(1671732747000)
 // tweetSummaryOfLast24Hours();
 
 
