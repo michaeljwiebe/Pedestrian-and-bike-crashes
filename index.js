@@ -9,9 +9,34 @@ const turf = require('@turf/turf')
 const assert = require('node:assert/strict')
 
 const assetDirectory = `./assets/${argv.location}`
+const currentDate = new Date();
+const currentMs = Date.now();
+const botRunTimeFilePath = `./archive/${argv.location}/${argv.location}-runtime.txt`;
+const summaryStem = `./archive/${argv.location}/${argv.location}-summaries-`;
+const currentSummaryFilePath = `${summaryStem}${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
+const prevYear = currentDate.getMonth() === 0 ? currentDate.getFullYear() - 1 : currentDate.getFullYear();
+const prevMonth = currentDate.getMonth() === 0 ? '11' : currentDate.getMonth() - 1;
+const prevSummaryFilePath = `${summaryStem}${prevMonth}-${prevYear}.json`
+const errorFilePath = `./errors/${argv.location}/${argv.location}-errors-${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
 
-const daysToTweet = argv.days ? Number(argv.days) : 1
-const targetTimeInMs = Date.now() - (86400000 * daysToTweet);
+const daysToTweet = argv.days ? Number(argv.days) : 0;
+const hoursToTweet = argv.hours ? Number(argv.hours) : 0;
+
+let lastRunTime = 0;
+const oneDayInMs = 86400000;
+try {
+  lastRunTime = JSON.parse(fs.readFileSync(botRunTimeFilePath));
+} catch (e) {
+  console.log('error reading bot runtime file: ', e.message)
+  // set last run time to one day ago if file doesn't exist
+  lastRunTime = currentMs - oneDayInMs;
+  fs.writeFileSync(botRunTimeFilePath, JSON.stringify(lastRunTime))
+
+  console.log('wrote file: ', botRunTimeFilePath)
+}
+const targetTimeInMs = daysToTweet || hoursToTweet
+  ? Date.now() - (oneDayInMs * daysToTweet) - (oneDayInMs / 24 * hoursToTweet)
+  : lastRunTime;
 
 const keysObj = keys[argv.location];
 
@@ -37,7 +62,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
  */
 const fetchIncidents = async () => {
   const location = keys[argv.location]
-  const limit = 1000 * daysToTweet // 800 was not high enough for Philly data
+  const limit = daysToTweet ? 1000 * daysToTweet : 1000 // 800 was not high enough for one day Philly data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log(`${argv.location} url: `, citizenUrl);
   try {
@@ -46,7 +71,7 @@ const fetchIncidents = async () => {
       method: 'GET',
     })
   } catch (e) {
-    console.log('error getting citizen data', e)
+    console.log('error getting citizen data: ', e.message)
   }
 }
 
@@ -103,7 +128,7 @@ const downloadMapImages = async (incident, eventKey) => {
 
     return new Promise(resolve => citizenMapResponse.data.pipe(citizenMapWriter).on('finish', resolve))
   } catch (e) {
-    console.log('error downloading map images', e)
+    console.log('error downloading map images: ', e.message)
   }
 }
 
@@ -196,8 +221,10 @@ const tweetIncidentThread = async (incident) => {
         errorFilePath,
         JSON.stringify([...errors, tweets])
       );
+      console.log('wrote file: ', errorFilePath);
     } catch (e) {
-      fs.writeFile(errorFilePath, JSON.stringify([tweets]))
+      fs.writeFile(errorFilePath, JSON.stringify([tweets]));
+      console.log('wrote file: ', errorFilePath);
     }
   }
 }
@@ -216,9 +243,22 @@ const tweetSummaryOfLast24Hours = async () => {
   const numIncidents = incidents.length;
   const lf = new Intl.ListFormat('en');
 
+  const timeToIndicate = () => {
+    if (daysToTweet === 1) {
+      return hoursToTweet === 0 ? '24 hours' : `${Number(1 + (hoursToTweet / 24).toFixed(2))} days`;
+    } else if (daysToTweet > 1) {
+      return `${hoursToTweet ? daysToTweet + Number((hoursToTweet / 24).toFixed(2)) : daysToTweet} days`
+    } else if (hoursToTweet > 0) {
+      return `${hoursToTweet} hours`
+    } else {
+      const days = ((currentMs - lastRunTime) / oneDayInMs).toFixed(2);
+      return `${days} days`
+    }
+  }
+
   let firstTweet = numIncidents > 0
-    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${daysToTweet === 1 ? '24 hours' : `${daysToTweet} days`}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
-    : `There were no incidents of traffic violence reported to 911 today in the ${argv.location} area.`
+    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${timeToIndicate()}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
+    : `There were no incidents of traffic violence reported to 911 over the last ${timeToIndicate()} in the ${argv.location} area.`
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred. Injuries reported here may have been fatal.`
 
   const tweets = [firstTweet]
@@ -369,9 +409,6 @@ const handleIncidentTweets = async (filteredIncidents) => {
   }
 }
 
-const currentDate = new Date();
-const currentSummaryFilePath = `./archive/${argv.location}/${argv.location}-summaries-${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
-const errorFilePath = `./errors/${argv.location}/${argv.location}-errors-${currentDate.getMonth()}-${currentDate.getFullYear()}.json`
 
 const saveIncidentSummaries = (array) => {
   fs.writeFile(
@@ -382,6 +419,13 @@ const saveIncidentSummaries = (array) => {
     )
   )
 }
+
+const saveBotRunTime = () => {
+  fs.writeFile(
+    botRunTimeFilePath, JSON.stringify(currentMs)
+  )
+}
+
 
 const getSummarizedIncident = (incident) => ({
   key: incident.key,
@@ -397,16 +441,28 @@ const getSummarizedIncident = (incident) => ({
 })
 
 const eliminateDuplicateIncidents = (array) => {
-  let previouslySavedList = [];
+  let currentMonthList = [];
+  let prevMonthList = [];
+  if (currentDate.getDay() < 3) {
+    try {
+      prevMonthList = JSON.parse(fs.readFileSync(prevSummaryFilePath));
+    } catch (e) {
+      console.log('error reading prev month summary file: ', e.message);
+    }
+  }
   try {
     const summaryFile = fs.readFileSync(currentSummaryFilePath);
-    previouslySavedList = JSON.parse(summaryFile);
+    currentMonthList = JSON.parse(summaryFile);
   } catch (err) {
     console.log('error reading file: ', err.message);
     fs.writeFile(currentSummaryFilePath, '[]')
     console.log('wrote file: ', currentSummaryFilePath)
   }
-  const unique = [...new Map([...previouslySavedList, ...array].map(incident => [incident.key, incident])).values()]
+  // @TODO: figure out how to eliminate last month's incidents from current potential results
+  //  (since they don't exist in this months summary yet)
+  const prevMonthKeys = prevMonthList.map(i => i.key);
+  const withoutIncidentsFromLastMonth = array.filter(incident => !prevMonthKeys.includes(incident.key))
+  const unique = [...new Map([...currentMonthList, ...withoutIncidentsFromLastMonth].map(incident => [incident.key, incident])).values()]
   saveIncidentSummaries(unique);
   return unique.filter(x => x.ts >= targetTimeInMs)
 }
@@ -467,6 +523,7 @@ const main = async () => {
     await handleIncidentTweets(finalList);
     // tweet the summary last because then it'll always be at the top of the timeline
     tweetSummaryOfLast24Hours();
+    saveBotRunTime();
   }
 }
 
