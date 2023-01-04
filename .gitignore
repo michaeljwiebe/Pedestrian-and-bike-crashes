@@ -3,11 +3,11 @@ keys.js
 node_modules/
 
 # images
-assets/**/**
+assets/**/**.png
 
 # errors
-errors/**/*.json
-errors/**/**
+errors/**.json
+errors/**/**.json
 
 # IDE files
 .idea
