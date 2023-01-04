@@ -6,14 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build; tsc -b",
-    "philly": "node index.js --location Philly --tweetSatellite --tweetReps --days 1",
-    "philly-2": "node index.js --location Philly --tweetSatellite --tweetReps --days 2",
-    "rva": "node index.js --location RVA --tweetSatellite --tweetReps --days 1",
-    "rva-2": "node index.js --location RVA --tweetSatellite --tweetReps --days 2",
-    "kc": "node index.js --location KC --tweetSatellite --tweetReps --days 1",
-    "kc-2": "node index.js --location KC --tweetSatellite --tweetReps --days 2",
-    "bots": "concurrently 'npm run philly' 'npm run kc' 'npm run rva'",
-    "bots-2": "concurrently 'npm run philly-2' 'npm run rva-2' 'npm run kc-2'"
+    "philly": "node index.js --location Philly --tweetSatellite --tweetReps",
+    "rva": "node index.js --location RVA --tweetSatellite --tweetReps",
+    "kc": "node index.js --location KC --tweetSatellite --tweetReps",
+    "bots": "concurrently 'npm run philly' 'npm run kc' 'npm run rva'"
   },
   "repository": {
     "type": "git",

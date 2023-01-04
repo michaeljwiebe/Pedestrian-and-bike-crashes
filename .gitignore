@@ -2,6 +2,13 @@ keys.js
 .DS_Store
 node_modules/
 
+# images
+assets/**/**
+
+# errors
+errors/**/*.json
+errors/**/**
+
 # IDE files
 .idea
 

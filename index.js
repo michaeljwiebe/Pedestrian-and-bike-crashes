@@ -62,7 +62,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
  */
 const fetchIncidents = async () => {
   const location = keys[argv.location]
-  const limit = daysToTweet ? 1000 * daysToTweet : 1000 // 800 was not high enough for one day Philly data
+  const limit = daysToTweet ? 1000 * daysToTweet : 2000 // 800 was not high enough for one day Philly data
   const citizenUrl = `https://citizen.com/api/incident/trending?lowerLatitude=${location.lowerLatitude}&lowerLongitude=${location.lowerLongitude}&upperLatitude=${location.upperLatitude}&upperLongitude=${location.upperLongitude}&fullResponse=true&limit=${limit}`
   console.log(`${argv.location} url: `, citizenUrl);
   try {
@@ -192,7 +192,7 @@ const tweetIncidentThread = async (incident) => {
   tweets.push({text: `${incident.raw}\n\n${incidentDate}`, media: {media_ids}})
 
   for (const updateKey in incident.updates) {
-    if (incident.updates[updateKey].type != 'ROOT') {
+    if (incident.updates[updateKey].type !== 'ROOT') {
       const updateTime = new Date(incident.updates[updateKey].ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone})
       tweets.push(`${incident.updates[updateKey].text}\n\n${updateTime}`)
     }
@@ -321,7 +321,7 @@ const containsWeaponsAndRobberyText = (text) =>
 
 /**
  * Filters Citizen incidents and returns ones involving Pedestrian and Bicyclists.
- * @param {Array} allIncidents an array of Citizen incidents
+ * @param {Array} potentialIncidents an array of Citizen incidents
  * @returns an array of Citizen incidents mentioning Pedestrians or Bicyclists.
  */
 const filterPedBikeIncidents = (potentialIncidents) => {
@@ -345,12 +345,15 @@ const filterVehicleOnlyIncidents = (nonPedBikeInicidents) =>
 const containsVehicleOnlyText = (text) =>
   text.includes('vehicle crashed') ||
   text.includes('vehicle collision') ||
-  text.includes('vehicle flipped') ||
-  text.includes('overturned vehicle') ||
-  text.includes('dragging vehicle') ||
-  text.includes('hit-and-run');
+  text.includes('dragging vehicle');
 
-const filterOtherIncidents = (allIncidents) =>
+const containsFlippedText = (text) =>
+  text.includes('vehicle flipped') ||
+  text.includes('overturned vehicle');
+
+const containsHitAndRunText = (text) => text.includes('hit-and-run');
+
+const filterAssault = (allIncidents) =>
   allIncidents.filter(x =>
     x.raw.toLowerCase().includes('vehicular assault')
   );
@@ -458,8 +461,6 @@ const eliminateDuplicateIncidents = (array) => {
     fs.writeFile(currentSummaryFilePath, '[]')
     console.log('wrote file: ', currentSummaryFilePath)
   }
-  // @TODO: figure out how to eliminate last month's incidents from current potential results
-  //  (since they don't exist in this months summary yet)
   const prevMonthKeys = prevMonthList.map(i => i.key);
   const withoutIncidentsFromLastMonth = array.filter(incident => !prevMonthKeys.includes(incident.key))
   const unique = [...new Map([...currentMonthList, ...withoutIncidentsFromLastMonth].map(incident => [incident.key, incident])).values()]
@@ -477,9 +478,11 @@ const handleFiltering = (potentialIncidents) => {
   // remove ped/bike incidents from list to see if others are vehicle only
   const remainingIncidents = excludeList(potentialIncidents, pedBikeIncidents);
   const incidentsWithRelevantUpdates = filterIncidentsWithPedBikeUpdates(remainingIncidents);
+  const flips = remainingIncidents.filter(i => containsFlippedText(i.raw.toLowerCase()));
+  const hitAndRuns = remainingIncidents.filter(i => containsHitAndRunText(i.raw.toLowerCase()));
   const vehicleOnlyIncidentsSorted = filterVehicleOnlyIncidents(remainingIncidents).sort((a, b) => a.ts - b.ts);
-  const otherIncidents = filterOtherIncidents(excludeList(remainingIncidents, vehicleOnlyIncidentsSorted))
-  const fullIncidentList = [...vehicleOnlyIncidentsSorted, ...otherIncidents, ...incidentsWithRelevantUpdates, ...pedBikeIncidents];
+  const assaults = filterAssault(excludeList(remainingIncidents, vehicleOnlyIncidentsSorted))
+  const fullIncidentList = [...vehicleOnlyIncidentsSorted, ...flips, ...hitAndRuns, ...assaults, ...incidentsWithRelevantUpdates, ...pedBikeIncidents];
   const rawTextArr = fullIncidentList.map(x => x.raw.toLowerCase());
   return {
     incidentList: fullIncidentList,
