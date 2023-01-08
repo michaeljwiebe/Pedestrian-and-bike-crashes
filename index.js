@@ -236,7 +236,13 @@ const tweetIncidentThread = async (incident) => {
  */
 const tweetSummaryOfLast24Hours = async () => {
   const summaryFile = fs.readFileSync(currentSummaryFilePath);
-  const allIncidents = JSON.parse(summaryFile);
+  let allIncidents = [];
+  try {
+    allIncidents = JSON.parse(summaryFile);
+  } catch (e) {
+    console.log('error reading summary file: ', e.message)
+  }
+
   const incidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
   const {summary} = handleFiltering(incidents);
   const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary;
@@ -512,8 +518,8 @@ const main = async () => {
 
   const citizenResponse = await fetchIncidents();
   const allIncidents = citizenResponse.data.results;
-  console.log(`${argv.location} incidents total: `, allIncidents.length);
   const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
+  console.log(`${argv.location} current incidents: `, currentIncidents.length);
   if (currentIncidents.length === 0) {
     tweetApiDown();
   } else {
