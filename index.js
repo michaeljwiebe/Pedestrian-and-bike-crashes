@@ -187,9 +187,18 @@ const tweetIncidentThread = async (incident) => {
     await client.v1.createMediaMetadata(satelliteMapMediaId, {alt_text: {text: `A satellite photo of a map at ${incident.address}. Coordinates: ${incident.latitude}, ${incident.longitude}`}})
     media_ids.push(satelliteMapMediaId)
   }
-
-  // Add initial tweet with map image linked
-  tweets.push({text: `${incident.raw}\n\n${incidentDate}`, media: {media_ids}})
+  let rep = '';
+  if (
+    argv.tweetReps
+    && representatives[argv.location][incident.cityCouncilDistrict]
+    && Number(incident.cityCouncilDistrict)
+  ) {
+    const representative = representatives[argv.location][incident.cityCouncilDistrict];
+    const districtTerm = representatives[argv.location].repesentativeDistrictTerm;
+    rep = `${districtTerm} ${incident.cityCouncilDistrict}, representative ${representative}`
+  }
+  // Add initial tweet with map image linked and representative info if available
+  tweets.push({text: `${incident.raw}\n\n${rep ? `${rep}\n` : ''}${incidentDate}`, media: {media_ids}})
 
   for (const updateKey in incident.updates) {
     if (incident.updates[updateKey].type !== 'ROOT') {
@@ -198,15 +207,6 @@ const tweetIncidentThread = async (incident) => {
     }
   }
 
-  if (
-    argv.tweetReps
-    && representatives[argv.location][incident.cityCouncilDistrict]
-    && Number(incident.cityCouncilDistrict)
-  ) {
-    const representative = representatives[argv.location][incident.cityCouncilDistrict];
-    const districtTerm = representatives[argv.location].repesentativeDistrictTerm;
-    tweets.push(`This incident occurred in ${districtTerm} ${incident.cityCouncilDistrict}. \n\nRepresentative: ${representative}`)
-  }
   const filteredTweets = tweets.filter(tweet => tweet);
   try {
     await client.v2.tweetThread(filteredTweets);
@@ -234,7 +234,7 @@ const tweetIncidentThread = async (incident) => {
  * @param {*} client the instantiated Twitter client
  * @param {*} incidents the relevant Citizen incidents
  */
-const tweetSummaryOfLast24Hours = async () => {
+const tweetSummaryOfLast24Hours = async (numFromCitizen = null) => {
   const summaryFile = fs.readFileSync(currentSummaryFilePath);
   let allIncidents = [];
   try {
@@ -243,10 +243,10 @@ const tweetSummaryOfLast24Hours = async () => {
     console.log('error reading summary file: ', e.message)
   }
 
-  const incidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
-  const {summary} = handleFiltering(incidents);
+  const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
+  const {summary} = handleFiltering(currentIncidents);
   const {hitAndRuns, pedBikeIncidents, overturnedVehicles, collisions, vehicularAssault, injuries} = summary;
-  const numIncidents = incidents.length;
+  const numIncidents = currentIncidents.length;
   const lf = new Intl.ListFormat('en');
 
   const timeToIndicate = () => {
@@ -263,7 +263,7 @@ const tweetSummaryOfLast24Hours = async () => {
   }
 
   let firstTweet = numIncidents > 0
-    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${timeToIndicate()}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
+    ? `There ${numIncidents === 1 ? 'was' : 'were'} ${numIncidents} incident${numIncidents === 1 ? '' : 's'} of traffic violence found over the last ${timeToIndicate()}${numFromCitizen ? ` out of a total of ${numFromCitizen} incidents` : ''}.${pedBikeIncidents || hitAndRuns || injuries || collisions || overturnedVehicles || vehicularAssault ? `\n` : ''}${pedBikeIncidents > 0 ? `\n${pedBikeIncidents} involved pedestrians or cyclists` : ''}${injuries > 0 ? `\n${injuries} resulted in injuries` : ''}${hitAndRuns > 0 ? `\n${hitAndRuns} ${hitAndRuns === 1 ? 'was a hit-and-run' : 'were hit-and-runs'}` : ''}${vehicularAssault > 0 ? `\n${vehicularAssault} involved vehicular assault` : ''}${overturnedVehicles > 0 ? `\n${overturnedVehicles} involved overturning/flipping vehicles` : ''}${collisions > 0 ? `\n${collisions === numIncidents ? `All` : `${collisions}`} were collisions` : ''}`
     : `There were no incidents of traffic violence reported to 911 over the last ${timeToIndicate()} in the ${argv.location} area.`
   const disclaimerTweet = `Disclaimer: This bot tweets incidents called into 911 and is not representative of all traffic violence that occurred. Injuries reported here may have been fatal.`
 
@@ -310,6 +310,11 @@ const excludeWeaponsAndRobbery = (array) => array.filter(x =>
   !containsWeaponsAndRobberyText(x.raw.toLowerCase())
 );
 
+const containsOtherDangerText = (text) =>
+  text.includes('car engulfed in flames') ||
+  text.includes('car engulfed in flames') ||
+  text.includes('car engulfed in flames');
+
 const containsWeaponsAndRobberyText = (text) =>
   text.includes('unfounded') ||
   text.includes('robbed') ||
@@ -350,6 +355,7 @@ const filterVehicleOnlyIncidents = (nonPedBikeInicidents) =>
 
 const containsVehicleOnlyText = (text) =>
   text.includes('vehicle crashed') ||
+  text.includes('vehicle careened') ||
   text.includes('vehicle collision') ||
   text.includes('dragging vehicle');
 
@@ -520,6 +526,7 @@ const main = async () => {
   const allIncidents = citizenResponse.data.results;
   const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
   console.log(`${argv.location} current incidents: `, currentIncidents.length);
+  console.log(currentIncidents.map(i => i.raw))
   if (currentIncidents.length === 0) {
     tweetApiDown();
   } else {
@@ -531,7 +538,7 @@ const main = async () => {
     const finalList = eliminateDuplicateIncidents(incidentList);
     await handleIncidentTweets(finalList);
     // tweet the summary last because then it'll always be at the top of the timeline
-    tweetSummaryOfLast24Hours();
+    tweetSummaryOfLast24Hours(currentIncidents.length);
     saveBotRunTime();
   }
 }
