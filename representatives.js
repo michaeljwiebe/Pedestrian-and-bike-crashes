@@ -30,6 +30,16 @@ module.exports = {
     '7': 'Cynthia I. Newbille @CynthiaNewbille',
     '8': 'Reva M. Trammell @TrammellReva',
     '9': 'Michael J. Jones @thedrmikejones',
+    'C1': 'Jim Ingle IngleJ@chesterfield.gov @ChesterfieldVA',
+    'C4': 'Kevin Carroll CarrollKevin@chesterfield.gov @ChesterfieldVA',
+    'C3': 'James Holland hollandj@chesterfield.gov @ChesterfieldVA',
+    'C2': 'Christopher Winslow winslowc@chesterfield.gov @ChesterfieldVA',
+    'C5': 'Mark Miller millermark@chesterfield.gov @ChesterfieldVA',
+    'H3': 'Dan Schmitt brookland@henrico.us @SchmittyVA @HenricoNews',
+    'H4': 'Frank Thornton fairfield@henrico.us @HenricoNews',
+    'H2': 'Thomas Branin threechopt@henrico.us @HenricoNews',
+    'H1': 'Pat O\'Bannon tuckahoe@henrico.us @TuckahoeSuper @HenricoNews',
+    'H5': 'Tyrone Nelson varina@henrico.us @revtyronenelson @HenricoNews'
   },
   Philly: {
     geojsonUrl: 'using.local.file.for.this.location',

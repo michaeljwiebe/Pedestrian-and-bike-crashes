@@ -354,6 +354,8 @@ const filterVehicleOnlyIncidents = (nonPedBikeInicidents) =>
 
 
 const containsVehicleOnlyText = (text) =>
+  (text.includes('car') && text.includes('crash')) ||
+  (text.includes('car') && text.includes('collision')) ||
   text.includes('vehicle crashed') ||
   text.includes('vehicle careened') ||
   text.includes('vehicle collision') ||
@@ -526,7 +528,11 @@ const main = async () => {
   const allIncidents = citizenResponse.data.results;
   const currentIncidents = allIncidents.filter(x => x.ts >= targetTimeInMs);
   console.log(`${argv.location} current incidents: `, currentIncidents.length);
-  console.log(currentIncidents.map(i => i.raw))
+  console.log(currentIncidents.map(i => i.raw).filter(t =>
+    !containsVehicleOnlyText(t)
+    && (t.toLowerCase().includes('vehicle')
+      || t.toLowerCase().includes('car'))
+  ))
   if (currentIncidents.length === 0) {
     tweetApiDown();
   } else {
