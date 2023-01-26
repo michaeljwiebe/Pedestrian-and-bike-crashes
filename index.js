@@ -191,7 +191,6 @@ const tweetIncidentThread = async (incident) => {
   if (
     argv.tweetReps
     && representatives[argv.location][incident.cityCouncilDistrict]
-    && Number(incident.cityCouncilDistrict)
   ) {
     const representative = representatives[argv.location][incident.cityCouncilDistrict];
     const districtTerm = representatives[argv.location].repesentativeDistrictTerm;
