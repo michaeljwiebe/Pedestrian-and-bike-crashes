@@ -21,6 +21,8 @@ module.exports = {
     list: ['@DPW_RichmondVA', '@LevarStoney', '@andreasrva', '@KatherineJRVA', '@AnnCan2020', '@kristenRVA',
       '@Stephanie4RVA', '@ellenrva', '@CynthiaNewbille', '@TrammellReva', '@thedrmikejones'],
     repesentativeDistrictTerm: 'City council district',
+    hRepesentativeDistrictTerm: 'Magisterial district',
+    cRepesentativeDistrictTerm: 'Magisterial district',
     '1': 'Andreas D. Addison @andreasrva',
     '2': 'Katherine Jordan @KatherineJRVA',
     '3': 'Ann-Frances Lambert @AnnCan2020',

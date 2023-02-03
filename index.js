@@ -173,7 +173,8 @@ const resetAssetsFolder = () => {
  * @param {*} incident the Citizen incident to tweet
  */
 const tweetIncidentThread = async (incident) => {
-  const incidentDate = new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone})
+  // trim date down to mm/dd/yyyy hh:mm format
+  const incidentDate = new Date(incident.ts).toLocaleString('en-US', {timeZone: keys[argv.location].timeZone}).replace(/(.*)\D\d+ /, '$1');
   const tweets = []
   const media_ids = []
 
@@ -193,8 +194,14 @@ const tweetIncidentThread = async (incident) => {
     && representatives[argv.location][incident.cityCouncilDistrict]
   ) {
     const representative = representatives[argv.location][incident.cityCouncilDistrict];
-    const districtTerm = representatives[argv.location].repesentativeDistrictTerm;
-    rep = `${districtTerm} ${incident.cityCouncilDistrict}, representative ${representative}`
+    let district = '';
+    if (Number(incident.cityCouncilDistrict)) {
+      district = `${representatives[argv.location].repesentativeDistrictTerm} ${incident.cityCouncilDistrict}`;
+    } else {
+      const countyAbbrev = incident.cityCouncilDistrict.slice(0, 1);
+      district = `${representatives[argv.location][`${countyAbbrev.toLowerCase()}RepesentativeDistrictTerm`]} ${incident.cityCouncilDistrict.slice(1)}`;
+    }
+    rep = `${district}, representative ${representative}`
   }
   // Add initial tweet with map image linked and representative info if available
   tweets.push({text: `${incident.raw}\n\n${rep ? `${rep}\n` : ''}${incidentDate}`, media: {media_ids}})
